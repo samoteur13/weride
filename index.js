@@ -21,11 +21,11 @@ app.use(express.static('./assets'));
 
 
 //-----------------------------------------création de session
-// app.use(session({
-//     secret: 'keyboard cat',
-//     resave: true,
-//     saveUninitialized: true,
-// }))
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+}))
 
 //----------------------------------------lancement de serveeur
 app.listen(8080, () => {
@@ -39,3 +39,5 @@ app.get('/', async (req, res) => {
     res.render('./template/inscription/connexion.html.twig', {
     })
 })
+
+//ceci est un test
