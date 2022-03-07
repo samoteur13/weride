@@ -29,7 +29,7 @@ app.use(session({
 
 //----------------------------------------lancement de serveeur
 app.listen(8080, () => {
-    console.log('le serveur a démare')
+    console.log('le serveur a démarré')
 })
 
 //-----------------------------------------main page
