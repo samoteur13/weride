@@ -30,6 +30,7 @@ app.use(session({
 //----------------------------------------lancement de serveeur
 app.listen(8080, () => {
     console.log('le serveur a démarré')
+    //ceci est un test
 })
 
 //-----------------------------------------main page
