@@ -12,7 +12,6 @@ userRouter.get('/', async (req, res) => {
 
 //-------------------------------------inscription
 userRouter.get('/inscription', async (req, res) => {
-
     res.render('./template/inscription/inscription.html.twig', {
     })
 })
@@ -37,8 +36,8 @@ userRouter.get('/connexion',  (req, res) => {
 })
 
 userRouter.post('/connexion', async (req, res) => {
-
-    res.redirect('/profil')
+    let login = await UserController.login(req.body)
+    res.redirect('/connexion')
 })
 
 //-------------------------------------profil

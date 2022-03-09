@@ -1,6 +1,6 @@
 import User from "../models/modelUser.js";
-import { cryptPassword } from "../customDependences/pasword.js";
-
+import { cryptPassword } from "../customDependences/password.js";
+import { comparePassword } from "../customDependences/password.js";
 
 export class UserController {
 
@@ -26,10 +26,17 @@ export class UserController {
         return newUser
     }
 
-    static async loging(user){
+    static async login(login) {
+        let user = await User.findOne({pseudo: login.pseudo})
+        let memeMotDePasse = await comparePassword(login.password, user.password)
         
+        if(memeMotDePasse){
+            console.log("jbnb");
+        }
+       
+        
+         
     }
 
-    
 
 }
