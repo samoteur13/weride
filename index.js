@@ -34,12 +34,6 @@ app.listen(8080, () => {
 })
 
 
-// -----------------------------------------home page
-app.get('/', async (req, res) => {
-    console.log('test')
-    res.render('./template/home/home.html.twig', {
-    })
-})
 
 
 

@@ -3,6 +3,12 @@ import { UserController } from '../controllers/userController.js';
 
 const userRouter = Router()
 
+// -----------------------------------------home page
+userRouter.get('/', async (req, res) => {
+    res.render('./template/home/home.html.twig', {
+    })
+})
+
 
 //-------------------------------------inscription
 userRouter.get('/inscription', async (req, res) => {
