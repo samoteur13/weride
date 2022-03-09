@@ -1,23 +1,21 @@
 import express from 'express';
-import bodyParser from 'body-parser'; //permet de décoder une requette http et recupéré les donnée
 import mongoose from "mongoose";
-import { Twig } from "twig";
 import session from "express-session";
+import { Config } from './Config.js';
+import userRouter from './router/routerUser.js';
+
 
 const app = express();
-// const database = "mongodb+srv://samoteur13:022394Samy@cluster0.jwcdd.mongodb.net/pokemon?retryWrites=true&w=majority"
+const database = "mongodb+srv://" + Config.dbUserName + ":" + Config.dbPassword + "@" + Config.dbClusterName + "/" + Config.dbNameDatabase + "?retryWrites=true&w=majority"
 
-//----------------------------------------connexion mongose
-// mongoose.connect(database, err => {
-//     if (err) {
-//         console.log("erreur de connexion" + err)
-//     } else {
-//         console.log('connected at mongodb')
-//     }
-// })
-
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static('./assets'));
+// ----------------------------------------connexion mongose
+mongoose.connect(database, err => {
+    if (err) {
+        console.log("erreur de connexion" + err)
+    } else {
+        console.log('connected at mongodb')
+    }
+})
 
 
 //-----------------------------------------création de session
@@ -26,19 +24,25 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }))
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('./assets'));
+app.use(userRouter) 
 
-//----------------------------------------lancement de serveeur
+//----------------------------------------lancement de serveur
 app.listen(8080, () => {
     console.log('le serveur a démarré')
-    //ceci est un test
 })
 
-//-----------------------------------------main page
+
+// -----------------------------------------home page
 app.get('/', async (req, res) => {
-    // let user = await User.findOne({ _id: req.session.userId })
-    // const listUser = await User.find()
-    res.render('./template/inscription/connexion.html.twig', {
+    console.log('test')
+    res.render('./template/home/home.html.twig', {
     })
 })
 
-//ceci est un test
+
+
+
+
+
