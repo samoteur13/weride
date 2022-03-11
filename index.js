@@ -24,6 +24,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
 }))
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('./assets'));
 app.use(userRouter) 
