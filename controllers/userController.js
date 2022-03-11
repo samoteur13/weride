@@ -59,8 +59,8 @@ export class UserController {
     }
 
     static async isConnected(id) {
-        let user = await User.findOne({_id: req.params.id})
-
+        let user = await User.findOne({_id: id})
+        return user
     }
 
 
