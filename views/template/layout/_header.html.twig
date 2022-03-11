@@ -1,4 +1,5 @@
-{% if !user %}
+{% if disconnect %}
+
     <header class="d-flex justify-content-between align-items-center border-bottom shadow">
         <a href="/" class="col-1 p-3 d-flex  text-dark text-decoration-none">
           <img class="col-7" src="./pictures/logo-weride.png" alt="logo_weride">
@@ -8,21 +9,20 @@
           <li class="nav-item"><a href="/connexion" class="nav-link text-secondary">Connexion</a></li>
         </ul>
       </header>
-    {% else %}
-      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      {% else %}
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
         <span class="fs-4">Simple header</span>
       </a>
 
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="/inscription" class="nav-link">inscription</a></li>
-        <li class="nav-item"><a href="/connexion" class="nav-link">connexion</a></li>
-        <li class="nav-item"><a href="/listEvent" class="nav-link">listes des évènements</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="/deconnexion" class="nav-link">deconnexion</a></li>
       </ul>
     </header>
-    {% endif %}
+{% endif %}
+      
+  
     
 
     

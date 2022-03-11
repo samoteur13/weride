@@ -6,6 +6,7 @@ const userRouter = Router()
 // -----------------------------------------home page
 userRouter.get('/', async (req, res) => {
     res.render('./template/home/home.html.twig', {
+        disconnect: true
     })
 })
 
@@ -13,6 +14,7 @@ userRouter.get('/', async (req, res) => {
 //-------------------------------------inscription
 userRouter.get('/inscription', async (req, res) => {
     res.render('./template/authentification/registration.html.twig', {
+        disconnect: true
     })
 })
 
@@ -30,6 +32,7 @@ userRouter.post('/inscription', async (req, res) => {
 //-------------------------------------connexion
 userRouter.get('/connexion', (req, res) => {
     res.render('./template/authentification/login.html.twig', {
+        disconnect: true
     })
 })
 
@@ -53,6 +56,7 @@ userRouter.post('/connexion', async (req, res) => {
 userRouter.get('/deconnexion', (req, res) => {
     req.session.destroy()
     res.render('./template/authentification/login.html.twig', {
+        disconnect: true
     })
 })
 
