@@ -10,11 +10,11 @@ export class UserController {
             errors: []
         }
 
-        user.password = await cryptPassword(user.password)
+        user.password = await cryptPassword(user.password) // le mot de passe devient crypté
 
         const newUser = new User(user)
 
-        //---------------------------- permet de récupérer les erreures
+        //---------------------------- permet de récupérer les erreurs
         let err = await newUser.validateSync()
         if (err) {
             for (let i = 0; i < Object.values(err.errors).length; i++) {
@@ -27,15 +27,40 @@ export class UserController {
     }
 
     static async login(login) {
-        let user = await User.findOne({pseudo: login.pseudo})
-        let memeMotDePasse = await comparePassword(login.password, user.password)
-        
-        if(memeMotDePasse){
-            console.log("jbnb");
+
+        let objectError = {
+            errors: []
         }
-       
-        
-         
+
+        let err = ""
+
+        let user = await User.findOne({pseudo: login.pseudo })
+      
+        if (user) {
+            let samePassword = await comparePassword(login.password, user.password)
+            if (samePassword) {
+                return user._id
+            } else {
+                err = "le mot de passe n'est pas correct"
+                objectError.errors.push(err)
+                return objectError;
+            }
+        } else {
+            err = "vous n'êtes pas inscrit"
+            objectError.errors.push(err)
+            return objectError;
+        }
+
+
+
+
+
+
+    }
+
+    static async isConnected(id) {
+        let user = await User.findOne({_id: req.params.id})
+
     }
 
 

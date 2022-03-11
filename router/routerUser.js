@@ -12,7 +12,7 @@ userRouter.get('/', async (req, res) => {
 
 //-------------------------------------inscription
 userRouter.get('/inscription', async (req, res) => {
-    res.render('./template/inscription/inscription.html.twig', {
+    res.render('./template/authentification/registration.html.twig', {
     })
 })
 
@@ -21,27 +21,45 @@ userRouter.post('/inscription', async (req, res) => {
     if (user && !user.errors) {
         res.redirect('/connexion')
     } else {
-        res.render('./template/inscription/inscription.html.twig', {
+        res.render('./template/authentification/registration.html.twig', {
             errors: user.errors
+        })
+    }
+})
+
+//-------------------------------------connexion
+userRouter.get('/connexion', (req, res) => {
+    res.render('./template/authentification/login.html.twig', {
+    })
+})
+
+userRouter.post('/connexion', async (req, res) => {
+    let login = await UserController.login(req.body)
+    if (login && !login.errors) {
+        req.session.userId = login
+        console.log(req.session.userId)
+        // req.session.destroy()
+        res.redirect('/profil/'+ req.session.userId )
+    } else {
+        res.render('./template/authentification/login.html.twig', {
+            errors: login.errors
         })
     }
 
 
 })
 
-//-------------------------------------connexion
-userRouter.get('/connexion',  (req, res) => {
-    res.render('./template/inscription/connexion.html.twig', {
+//-------------------------------------déconnexion
+userRouter.get('/deconnexion', (req, res) => {
+    req.session.destroy()
+    res.render('./template/authentification/login.html.twig', {
     })
 })
 
-userRouter.post('/connexion', async (req, res) => {
-    let login = await UserController.login(req.body)
-    res.redirect('/connexion')
-})
-
 //-------------------------------------profil
-userRouter.get('/profil', async (req, res) => {
+userRouter.get('/profil/:id', async (req, res) => {
+    // let user = await User.findOne({_id: req.params.id})
+    // console.log(user)
     res.render('./template/user/profil.html.twig', {
     })
 })

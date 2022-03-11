@@ -6,7 +6,9 @@
 		                                                                                   <!--_id === -->
 			<form class="col-md-6 mx-auto mt-5" method="post" action="connexion">
 				<h1>Connexion</h1>
-				<p class="text-danger">{{messageErreur}}</p>
+			{% for err in errors %}
+				<p class="text-danger">{{err}}</p>
+			{% endfor %}
 				<div>
 					<label for="name">pseudo</label>
 					<input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" value="{{user.pseudo}}">
