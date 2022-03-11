@@ -40,7 +40,6 @@ userRouter.post('/connexion', async (req, res) => {
     let login = await UserController.login(req.body)
     if (login && !login.errors) {
         req.session.userId = login
-        console.log(req.session.userId)
         // req.session.destroy()
         res.redirect('/profil/'+ req.session.userId )
     } else {
@@ -62,9 +61,9 @@ userRouter.get('/deconnexion', (req, res) => {
 
 //-------------------------------------profil
 userRouter.get('/profil/:id', async (req, res) => {
-    // let user = await User.findOne({_id: req.params.id})
-    // console.log(user)
+    let user = await UserController.isConnected(req.params.id)
     res.render('./template/user/profil.html.twig', {
+        user : user
     })
 })
 
