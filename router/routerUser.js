@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/userController.js';
+import session from 'express-session';
+
 
 const userRouter = Router()
 
@@ -40,15 +42,12 @@ userRouter.post('/connexion', async (req, res) => {
     let login = await UserController.login(req.body)
     if (login && !login.errors) {
         req.session.userId = login
-        // req.session.destroy()
         res.redirect('/profil/'+ req.session.userId )
     } else {
         res.render('./template/authentification/login.html.twig', {
             errors: login.errors
         })
     }
-
-
 })
 
 //-------------------------------------déconnexion
@@ -61,16 +60,42 @@ userRouter.get('/deconnexion', (req, res) => {
 
 //-------------------------------------profil
 userRouter.get('/profil/:id', async (req, res) => {
-    let user = await UserController.isConnected(req.params.id)
-    res.render('./template/user/profil.html.twig', {
-        user : user
-    })
+    let user = await UserController.isConnected(req.session.userId)
+    if(user){
+        res.render('./template/user/profil.html.twig', {
+            user : user
+        })
+    }else {
+        res.redirect('/connexion')
+    }
+
 })
 
 //-------------------------------------updateprofil
-userRouter.get('/updateProfil', async (req, res) => {
-    res.render('./template/user/updateProfil.html.twig', {
-    })
+userRouter.get('/modifierProfil/:id', async (req, res) => {
+    let user = await UserController.isConnected(req.session.userId)
+    if(user){
+        res.render('./template/user/updateProfil.html.twig', {
+            user : user
+        })
+    }else {
+        res.redirect('/connexion')
+    }
+
+})
+
+userRouter.post('/modifierProfil/:id', async (req, res) => {
+    let user = await UserController.isConnected(req.session.userId)
+    let update = await UserController.updateUser(user._id, req.body)
+    if( !update.errors ){ 
+        res.redirect('/profil/' + user._id)
+    } else {
+        res.render('./template/user/updateProfil.html.twig', {
+            user: user ,
+            errors: update.errors
+        })
+    }
+        
 })
 
 //-------------------------------------listEvent

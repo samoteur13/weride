@@ -1,4 +1,34 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
-<h1>UpdateProfil</h1>
+	<div class="container">
+		<div class="row ">
+			<form class="col-md-6 mx-auto mt-5" method="post" action="modifierProfil">
+				<h1>Modifier le Profil</h1>
+				{% for err in errors %}
+				<p class="text-danger">{{err}}</p>
+				{% endfor %}
+				<div>
+					<label for="name">Prénom :</label>
+					<input type="text" class="form-control" id="name" name="name" placeholder="Entrer votre prénom" value="{{user.name}}">
+				</div>
+				<div>
+					<label for="firstName">Nom :</label>
+					<input type="text" class="form-control" id="firstName" name="firstName" placeholder="Entrer votre nom" value="{{user.firstName}}">
+				</div>
+				<div>
+					<label for="firstName">Pseudo :</label>
+					<input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" value="{{user.pseudo}}">
+				</div>
+				<div>
+					<label for="firstName">Ancien mot de passe :</label>
+					<input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Entrer votre ancien mot de passe" value="">
+				</div>
+				<div>
+					<label for="firstName">Nouveaux mot de passe :</label>
+					<input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe" value="">
+				</div>
+				<button type="submit" class="btn btn-primary">modifier</button>
+			</form>
+		</div>
+	</div>
 {% endblock %}
