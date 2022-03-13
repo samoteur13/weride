@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/userController.js';
-import session from 'express-session';
 
 
 const userRouter = Router()
@@ -11,7 +10,6 @@ userRouter.get('/', async (req, res) => {
         disconnect: true
     })
 })
-
 
 //-------------------------------------inscription
 userRouter.get('/inscription', async (req, res) => {
@@ -105,12 +103,12 @@ userRouter.get('/listEvent', async (req, res) => {
 })
 
 //-------------------------------------newEvent
-userRouter.get('/newEvent', async (req, res) => {
+userRouter.get('/newEvent/:id', async (req, res) => {
     res.render('./template/event/newEvent.html.twig', {
     })
 })
 
-userRouter.post('/newEvent', async (req, res) => {
+userRouter.post('/newEvent/:id', async (req, res) => {
     res.redirect('./listEvent', {
     })
 })

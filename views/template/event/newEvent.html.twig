@@ -1,4 +1,54 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
-<h1>créer un évenement</h1>
+
+	<div class="container">
+		<div class="row ">
+			<form class="col-md-6 mx-auto mt-5" method="post" action="newEvent">
+				<h1>créer un évenement</h1>
+				{% for err in errors %}
+					<p class="text-danger">{{err}}</p>
+				{% endfor %}
+
+				<div>
+					<label for="startDate">Date de départ :</label>
+					<input type="date" class="form-control" id="startDate" name="startDate" placeholder="" value="">
+				</div>
+				<div>
+					<label for="endDAte">Date de retour :</label>
+					<input type="date" class="form-control" id="endDate" name="endDate" placeholder="" value="">
+				</div>
+				<div>
+					<label for="departureLocation">Lieu de départ</label>
+					<input type="text" class="form-control" id="departureLocation" name="departureLocation" placeholder="" value="">
+				</div>
+				<div>
+					<label for="backLocation">Lieu de retour :</label>
+					<input type="mail" class="form-control" id="backLocation" name="backLocation" placeholder="" value="">
+				</div>
+				<div>
+					<label for="step">Etape :</label>
+					<input type="password" class="form-control" id="step" name="step" placeholder="" value="">
+				</div>
+				<div class="row mt-2 mb-2">
+					<div class="d-flex space-between">
+						<input type="radio" class="form-control" id="pepere" name="type" placeholder="" value="pepere">
+						<label for="type">pépére</label>
+					</div>
+					<div class="d-flex">
+						<input type="radio" class="form-control" id="normal" name="type" placeholder="" value="normal">
+						<label for="type">normal</label>
+					</div>
+					<div class="d-flex">
+						<input type="radio" class="form-control" id="gaz" name="type" placeholder="" value="gaz">
+						<label for="type">gazzZ</label>
+					</div>
+				</div>
+				<div>
+					<label for="description">Description :</label>
+					<input type="textera" class="form-control" id="description" name="description" placeholder="" value="">
+				</div>
+				<button type="submit" class="btn btn-primary">valider</button>
+			</form>
+		</div>
+	</div>
 {% endblock %}
