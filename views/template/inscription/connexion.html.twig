@@ -1,0 +1,23 @@
+{% extends "../../main.html.twig" %}
+{% block main %}
+	<div class="container">
+		<div class="row ">      
+
+		                                                                                   <!--_id === -->
+			<form class="col-md-6 mx-auto mt-5" method="post" action="{% if action == "/updatePokemon" %}{{action}}/{{user._id}}{% else %}{{action}}{% endif %}">
+				<h1>Connexion</h1>
+				<p class="text-danger">{{messageErreur}}</p>
+				<div>
+					<label for="name">pseudo</label>
+					<input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" value="{{user.pseudo}}">
+				</div>
+				<div>
+					<label for="password">mot de passe</label>
+					<input type="password" class="form-control" id="password" name="password" placeholder="mot de passe" value="{{user.password}}">
+				</div>
+				<button type="submit" class="btn btn-primary">Connexion</button>
+			</form>
+		</div>
+	</div>
+	
+{% endblock %}
