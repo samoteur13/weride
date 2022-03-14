@@ -62,22 +62,22 @@ export class UserController {
 
     }
 
-    static async updateUser(user, modif) {
+    static async updateUser(user, modify) {
 
         let objectError = {
             errors: []
         }
         let err = ""
 
-        let { password } = await User.findOne({ _id: user }) // {permet de récupérer seulement la valeur de l'objet}
+        let { password } = await User.findOne({ _id: user }) // {permet de récupérer seulement la valeur 'password' de l'objet user}
 
-        let samePassword = await comparePassword(modif.oldPassword, password)
-        modif.password = await cryptPassword(modif.password) // le mot de passe devient crypté
+        let samePassword = await comparePassword(modify.oldPassword, password)
+        modify.password = await cryptPassword(modify.password) // le mot de passe devient crypté
         if (samePassword) {
-            User.updateOne({ _id: user }, modif, (error, user) => {    
+            User.updateOne({ _id: user }, modify, (error, user) => {    
                 
             })
-            return "" //pour ne pas returner une valeur vide et créer une erreure
+            return "" //pour ne pas returner une valeur vide et créer une erreur
         } else {
             err = "votre ancien mot de passe n'est pas correct"
             objectError.errors.push(err)

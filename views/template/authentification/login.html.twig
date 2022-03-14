@@ -1,9 +1,9 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
-	<main class="row" style="background: url('./pictures/bg.png');background-size: cover; background-repeat: no-repeat;">
+	<main style="background: url('./pictures/bg.png');background-size: cover; background-repeat: no-repeat;">
 		<h1 class="text-center my-5">Hey, ravis de te revoir!</h1>
 		<!--_id === -->
-		<form class="col-md-6 mx-auto my-5 bg-light rounded" method="post" action="connexion">
+		<form class="col-md-6 p-3 mx-auto my-5 bg-light rounded" method="post" action="connexion">
 			<h1 class="text-primary">Connexion</h1>
 			<hr class="m-0">
 			{% for err in errors %}
