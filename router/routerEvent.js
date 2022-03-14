@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { EventController } from "../controllers/eventController.js";
 import { UserController } from '../controllers/userController.js';
 
+
 const eventRouter = Router()
 
 

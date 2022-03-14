@@ -35,11 +35,10 @@ export class UserController {
         let err = ""
 
         let user = await User.findOne({ pseudo: login.pseudo })
-
         if (user) {
             let samePassword = await comparePassword(login.password, user.password)
             if (samePassword) {
-                return user._id
+                return user
             } else {
                 err = "le mot de passe n'est pas correct"
                 objectError.errors.push(err)
@@ -61,6 +60,10 @@ export class UserController {
         }
 
     }
+    
+    static async getUser(id, excludeFields) {
+        return await User.findOne({_id: id}, excludeFields)
+    }
 
     static async updateUser(user, modify) {
 
@@ -74,9 +77,7 @@ export class UserController {
         let samePassword = await comparePassword(modify.oldPassword, password)
         modify.password = await cryptPassword(modify.password) // le mot de passe devient crypté
         if (samePassword) {
-            User.updateOne({ _id: user }, modify, (error, user) => {    
-                
-            })
+            await User.updateOne({ _id: user }, modify)
             return "" //pour ne pas returner une valeur vide et créer une erreur
         } else {
             err = "votre ancien mot de passe n'est pas correct"

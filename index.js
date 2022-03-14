@@ -7,6 +7,7 @@ import eventRouter from './router/routerEvent.js';
 
 
 const app = express();
+const router = express.Router()
 const database = "mongodb+srv://" + Config.dbUserName + ":" + Config.dbPassword + "@" + Config.dbClusterName + "/" + Config.dbNameDatabase + "?retryWrites=true&w=majority"
 
 // ----------------------------------------connexion mongose
@@ -27,13 +28,14 @@ app.use(session({
 }))
 
 
-//-------------------------------------------------c'est quoi déja?
+//-------------------------------------------------remplace bodyParser
 app.use(express.urlencoded({ extended: true }));
 
 //-----------------------------------dossier static
 app.use(express.static('./assets'));
 
 //------------------------------------route initialisation
+app.use(router)
 app.use(userRouter) 
 app.use(eventRouter)
 
@@ -41,9 +43,3 @@ app.use(eventRouter)
 app.listen(8080, () => {
     console.log('le serveur a démarré')
 })
-
-
-
-
-
-
