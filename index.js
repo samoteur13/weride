@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import session from "express-session";
 import { Config } from './Config.js';
 import userRouter from './router/routerUser.js';
+import eventRouter from './router/routerEvent.js';
 
 
 const app = express();
@@ -25,9 +26,16 @@ app.use(session({
     saveUninitialized: true,
 }))
 
+
+//-------------------------------------------------c'est quoi déja?
 app.use(express.urlencoded({ extended: true }));
+
+//-----------------------------------dossier static
 app.use(express.static('./assets'));
+
+//------------------------------------route initialisation
 app.use(userRouter) 
+app.use(eventRouter)
 
 //----------------------------------------lancement de serveur
 app.listen(8080, () => {

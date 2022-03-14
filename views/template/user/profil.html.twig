@@ -1,4 +1,29 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
-<h1>bienvenue {{user.name}}</h1>
+	<div>
+		<h1>bienvenue
+			{{user.name}}</h1>
+		<p>Nom :
+			{{user.firstName}}</p>
+		<p>Pseudo :
+			{{user.pseudo}}</p>
+	</div>
+	<section>
+		<h2>Mes sorties</h2>
+		{% for event in user.eventUser %}
+			<div class="card" style="width: 18rem;">
+				<div class="card-body">
+					<h5 class="card-title">{{event.description}}</h5>
+					<p class="card-text">depart : {{event.departureLocation}} le {{event.startDate}}</p>
+					<p class="card-text">à {{event.hour}}</p>
+					<p class="card-text">arriver :{{event.backLocation}} le {{event.endDate}}</p>
+					<p class="card-text">étape :{{event.step}}</p>
+					<p class="card-text">type : {{event.step}}</p>
+					<a href="" class="btn btn-primary">Modifier</a>
+					<a href="" class="btn btn-danger">Supprimer</a>
+				</div>
+			</div>
+		{% endfor %}
+	</section>
+    
 {% endblock %}

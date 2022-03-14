@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/userController.js';
 
+
 const userRouter = Router()
 
 // -----------------------------------------home page
@@ -9,7 +10,6 @@ userRouter.get('/', async (req, res) => {
         disconnect: true
     })
 })
-
 
 //-------------------------------------inscription
 userRouter.get('/inscription', async (req, res) => {
@@ -40,15 +40,12 @@ userRouter.post('/connexion', async (req, res) => {
     let login = await UserController.login(req.body)
     if (login && !login.errors) {
         req.session.userId = login
-        // req.session.destroy()
-        res.redirect('/profil/'+ req.session.userId )
+        res.redirect('/profil/' + req.session.userId)
     } else {
         res.render('./template/authentification/login.html.twig', {
             errors: login.errors
         })
     }
-
-
 })
 
 //-------------------------------------déconnexion
@@ -61,46 +58,43 @@ userRouter.get('/deconnexion', (req, res) => {
 
 //-------------------------------------profil
 userRouter.get('/profil/:id', async (req, res) => {
-    let user = await UserController.isConnected(req.params.id)
-    res.render('./template/user/profil.html.twig', {
-        user : user
-    })
+    let user = await UserController.isConnected(req.session.userId)
+    if (user) {
+        res.render('./template/user/profil.html.twig', {
+            user: user
+        })
+    } else {
+        res.redirect('/connexion')
+    }
+
 })
 
 //-------------------------------------updateprofil
-userRouter.get('/updateProfil', async (req, res) => {
-    res.render('./template/user/updateProfil.html.twig', {
-    })
+userRouter.get('/modifierProfil/:id', async (req, res) => {
+    let user = await UserController.isConnected(req.session.userId)
+    if (user) {
+        res.render('./template/user/updateProfil.html.twig', {
+            user: user
+        })
+    } else {
+        res.redirect('/connexion')
+    }
+
 })
 
-//-------------------------------------listEvent
-userRouter.get('/listEvent', async (req, res) => {
-    res.render('./template/event/listEvent.html.twig', {
-    })
-})
+userRouter.post('/modifierProfil/:id', async (req, res) => {
+    let user = await UserController.isConnected(req.session.userId)
+    let update = await UserController.updateUser(user._id, req.body)
+    if (!update.errors) {
+        res.redirect('/profil/' + user._id)
+    } else {
+        res.render('./template/user/updateProfil.html.twig', {
+            user: user,
+            errors: update.errors
+        })
+    }
 
-//-------------------------------------newEvent
-userRouter.get('/newEvent', async (req, res) => {
-    res.render('./template/event/newEvent.html.twig', {
-    })
 })
-
-userRouter.post('/newEvent', async (req, res) => {
-    res.redirect('./listEvent', {
-    })
-})
-
-//-------------------------------------UpdateEvent
-userRouter.get('/updateEvent', async (req, res) => {
-    res.render('./template/event/updateEvent.html.twig', {
-    })
-})
-
-userRouter.post('/updateEvent', async (req, res) => {
-    res.redirect('./listEvent', {
-    })
-})
-
 
 
 export default userRouter

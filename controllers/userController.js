@@ -34,8 +34,8 @@ export class UserController {
 
         let err = ""
 
-        let user = await User.findOne({pseudo: login.pseudo })
-      
+        let user = await User.findOne({ pseudo: login.pseudo })
+
         if (user) {
             let samePassword = await comparePassword(login.password, user.password)
             if (samePassword) {
@@ -50,18 +50,40 @@ export class UserController {
             objectError.errors.push(err)
             return objectError;
         }
-
-
-
-
-
-
     }
 
     static async isConnected(id) {
-        let user = await User.findOne({_id: id})
-        return user
+        let user = await User.findOne({ _id: id })
+        if (user) {
+            return user
+        } else {
+            return
+        }
+
     }
 
+    static async updateUser(user, modif) {
 
+        let objectError = {
+            errors: []
+        }
+        let err = ""
+
+        let { password } = await User.findOne({ _id: user }) // {permet de récupérer seulement la valeur de l'objet}
+
+        let samePassword = await comparePassword(modif.oldPassword, password)
+        modif.password = await cryptPassword(modif.password) // le mot de passe devient crypté
+        if (samePassword) {
+            User.updateOne({ _id: user }, modif, (error, user) => {    
+                
+            })
+            return "" //pour ne pas returner une valeur vide et créer une erreure
+        } else {
+            err = "votre ancien mot de passe n'est pas correct"
+            objectError.errors.push(err)
+            return objectError;
+        }
+
+    }
+    
 }
