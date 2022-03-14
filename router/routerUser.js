@@ -40,7 +40,7 @@ userRouter.post('/connexion', async (req, res) => {
     let login = await UserController.login(req.body)
     if (login && !login.errors) {
         req.session.userId = login
-        res.redirect('/profil/'+ req.session.userId )
+        res.redirect('/profil/' + req.session.userId)
     } else {
         res.render('./template/authentification/login.html.twig', {
             errors: login.errors
@@ -59,11 +59,11 @@ userRouter.get('/deconnexion', (req, res) => {
 //-------------------------------------profil
 userRouter.get('/profil/:id', async (req, res) => {
     let user = await UserController.isConnected(req.session.userId)
-    if(user){
+    if (user) {
         res.render('./template/user/profil.html.twig', {
-            user : user
+            user: user
         })
-    }else {
+    } else {
         res.redirect('/connexion')
     }
 
@@ -72,11 +72,11 @@ userRouter.get('/profil/:id', async (req, res) => {
 //-------------------------------------updateprofil
 userRouter.get('/modifierProfil/:id', async (req, res) => {
     let user = await UserController.isConnected(req.session.userId)
-    if(user){
+    if (user) {
         res.render('./template/user/updateProfil.html.twig', {
-            user : user
+            user: user
         })
-    }else {
+    } else {
         res.redirect('/connexion')
     }
 
@@ -85,45 +85,16 @@ userRouter.get('/modifierProfil/:id', async (req, res) => {
 userRouter.post('/modifierProfil/:id', async (req, res) => {
     let user = await UserController.isConnected(req.session.userId)
     let update = await UserController.updateUser(user._id, req.body)
-    if( !update.errors ){ 
+    if (!update.errors) {
         res.redirect('/profil/' + user._id)
     } else {
         res.render('./template/user/updateProfil.html.twig', {
-            user: user ,
+            user: user,
             errors: update.errors
         })
     }
-        
-})
 
-//-------------------------------------listEvent
-userRouter.get('/listEvent', async (req, res) => {
-    res.render('./template/event/listEvent.html.twig', {
-    })
 })
-
-//-------------------------------------newEvent
-userRouter.get('/newEvent/:id', async (req, res) => {
-    res.render('./template/event/newEvent.html.twig', {
-    })
-})
-
-userRouter.post('/newEvent/:id', async (req, res) => {
-    res.redirect('./listEvent', {
-    })
-})
-
-//-------------------------------------UpdateEvent
-userRouter.get('/updateEvent', async (req, res) => {
-    res.render('./template/event/updateEvent.html.twig', {
-    })
-})
-
-userRouter.post('/updateEvent', async (req, res) => {
-    res.redirect('./listEvent', {
-    })
-})
-
 
 
 export default userRouter

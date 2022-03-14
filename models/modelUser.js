@@ -21,6 +21,7 @@ const userShema = mongoose.Schema({
         type:String,
         required: [true, 'Veuillez saisir votre email']
     },
+    eventUser: Array
 
 })
 
