@@ -1,8 +1,34 @@
 {% extends "../../main.html.twig" %}
-{% block header %}
-        {% include "../layout/_header.html.twig" %}
-    {% endblock %}
+
 {% block main %}
-<h1>hfhj</h1>
+    <main class="" style="background: url('./pictures/bg.png');background-size: cover; background-repeat: no-repeat;">
+
+    <div class="text-center ">
+      <h1 class="py-5">Le loup solidaire</h1>
+      <p>Pourquoi te balader seul alors que tu peux le faire à plusieurs?</p>
+      <p><span class="fw-bold">WeRide</span> te permets d’organiser des balades en bécanes en compagnies des motards de ta région.</p>
+    </div>
+
+    <div class="row col-8 mx-auto text-center ">
+      <div class="col-4 bg-light p-0 mx-auto my-3 text-success rounded">
+        <img class="col-12 rounded" src="./pictures/map.jpg" alt="image_map">
+        <h2 class="p-4 m-0">Organise ta balade en plannifiant ton itinéraire</h2>
+      </div>
+      <div class="col-4 bg-light p-0 mx-auto my-3 text-success rounded">
+        <img class="col-12 rounded" src="./pictures/gestion.png" alt="image_map">
+        <h2 class="p-4 m-0">Maitrise ton budget pour chacune de tes sorties</h2>
+      </div>
+    </div>
+    <div class="row col-8 mx-auto text-center ">
+      <div class="col-4 bg-light p-0 mx-auto my-3 text-success rounded">
+        <img class="col-12 rounded" src="./pictures/motard.jpg" alt="image_map">
+        <h2 class="p-4 m-0">Frimmes et postes tes plus belles photos</h2>
+      </div>
+      <div class="col-4 bg-light p-0 mx-auto my-3 text-success rounded">
+        <img class="col-12 rounded" src="./pictures/group.jpg" alt="image_map">
+        <h2 class="p-4 m-0">Avales l'asphalte avec un max de potes motards</h2>
+      </div>
+    </div>
+  </main>
 {% endblock %}
 
