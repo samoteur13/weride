@@ -1,4 +1,58 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
-<h1>modifier l'évenement</h1>
+<div class="container">
+		<div class="row ">
+			<form class="col-md-6 mx-auto mt-5" method="post" action="newEvent">
+				<h1>Modifier un évenement</h1>
+				{% for err in errors %}
+					<p class="text-danger">{{err}}</p>
+				{% endfor %}
+		{{event.startDate}}
+				<div>
+					<label for="startDate">Date de départ :</label>
+					<input type="date" class="form-control" id="startDate" name="startDate" placeholder="" value="{{event.startDate}}">
+				</div>
+								<div>
+					<label for="hour">Heure de départ :</label>
+					<input type="time" class="form-control" id="hour" name="hour" placeholder="" value="{{event.hour}}">
+				</div>
+				<div>
+					<label for="endDAte">Date de retour :</label>
+					<input type="date" class="form-control" id="endDate" name="endDate" placeholder="" value="{{event.endDate}}">
+				</div>
+				<div>
+					<label for="departureLocation">Lieu de départ</label>
+					<input type="text" class="form-control" id="departureLocation" name="departureLocation" placeholder="" value="{{event.departureLocation}}">
+				</div>
+				<div>
+					<label for="backLocation">Lieu de retour :</label>
+					<input type="mail" class="form-control" id="backLocation" name="backLocation" placeholder="" value="{{event.backLocation}}">
+				</div>
+				<div>
+					<label for="step">Etape :</label>
+					<input type="text" class="form-control" id="step" name="step" placeholder="" value="{{event.step}}">
+				</div>
+				<div class="row mt-2 mb-2">
+					<div>
+						<input type="radio"  id="pepere" name="type"  value="pepere">
+						<label for="pepere">pépére</label>
+					</div>
+					<div>
+						<input type="radio"  id="normal" name="type"  value="normal">
+						<label for="normal">normal</label>
+					</div>
+					<div>
+						<input type="radio"  id="gaz" name="type"  value="gaz">
+						<label for="gaz">gazzZ</label>
+					</div>
+				</div>
+				<div>
+					<label for="description">Description :</label>
+					<input type="textera" class="form-control" id="description" name="description" placeholder="" value="{{event.description}}">
+				</div>
+				<button type="submit" class="btn btn-primary">valider</button>
+			</form>
+		</div>
+	</div>
+
 {% endblock %}
