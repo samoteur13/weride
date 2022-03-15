@@ -1,3 +1,9 @@
 .header {
     background-color:#3ECF67;
 }
+
+main {
+    background: url('./pictures/bg.png') !important;
+    background-size: cover ;
+     background-repeat: no-repeat;
+}

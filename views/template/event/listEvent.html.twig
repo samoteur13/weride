@@ -1,5 +1,6 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
+<main>
 	<h1>Listes des évenement</h1>
 	{% for event in events %}
 		{% for list in event.eventUser %}
@@ -24,5 +25,5 @@
 			</div>
 		{% endfor %}
 	{% endfor %}
-
+</main>
 {% endblock %}
