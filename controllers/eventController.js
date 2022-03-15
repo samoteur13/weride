@@ -38,4 +38,11 @@ export class EventController {
         await user.save()
     }
 
+    static async updateEvent(user, event, modify) {
+
+
+       
+    }
+    
+    
 }

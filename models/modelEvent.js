@@ -5,7 +5,8 @@ const eventShema = mongoose.Schema({
     startDate: {
         type: String,
         required: [true, "Saisir une date départ"]
-    }, hour: {
+    },
+    hour: {
         type: String,
         required: [true, "Saisir une heure de départ"]
     },

@@ -62,15 +62,24 @@ eventRouter.get('/modifierEvenement/:id', async (req, res) => {
     }
 })
 
-eventRouter.post('/modifierEvenement', async (req, res) => {
-    if (!update.errors) {
-        res.redirect('/listeEvenement/' + user._id)
-    } else {
-        res.render('./template/event/updateEvent.html.twig', {
-            user: user,
-            errors: update.errors
-        })
+eventRouter.post('/modifierEvenement/:id', async (req, res) => {
+    const user = await UserController.isConnected(req.session.userId)
+    for (let i = 0; i<user.eventUser.length; i++){
+        if(user.eventUser[i]._id == req.params.id){
+          user.eventUser[i].startDate = req.body.startDate;
+          user.eventUser[i].hour = req.body.hour;
+          user.eventUser[i].endDate = req.body.endDate;
+          user.eventUser[i].departureLocation = req.body.departureLocation;
+          user.eventUser[i].backLocation = req.body.backLocation;
+          user.eventUser[i].step = req.body.step;
+          user.eventUser[i].type = req.body.type;
+          user.eventUser[i].description = req.body.description;
+        }
     }
+    await User.updateOne({_id: req.session.userId}, {eventUser: user.eventUser
+    })
+   
+    res.redirect('/listeEvenement/' + user._id)
 })
 
 //-------------------------------------deleteEvent
