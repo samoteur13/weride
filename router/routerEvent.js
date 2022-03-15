@@ -50,9 +50,10 @@ eventRouter.get('/modifierEvenement/:id',ifConnected, async (req, res) => {
 })
 
 eventRouter.post('/modifierEvenement/:id',ifConnected, async (req, res) => {
-    res.redirect('./listEvent', {
-    })
-})
+    const user = req.session.user
+    const eventModify = await EventController.updateEvent(user, req.params.id, req.body)
+    res.redirect('/listeEvenement')
+ })
 
 //-------------------------------------deleteEvent
 eventRouter.get('/supprimerEvenement/:id',ifConnected, async (req, res) => {

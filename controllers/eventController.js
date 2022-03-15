@@ -37,4 +37,24 @@ export class EventController {
         await user.save()
     }
 
+    static async updateEvent(user, userId, form) {
+        for (let i = 0; i<user.eventUser.length; i++){
+            if(user.eventUser[i]._id == userId){
+              user.eventUser[i].startDate = form.startDate;
+              user.eventUser[i].hour = form.hour;
+              user.eventUser[i].endDate = form.endDate;
+              user.eventUser[i].departureLocation = form.departureLocation;
+              user.eventUser[i].backLocation = form.backLocation;
+              user.eventUser[i].step = form.step;
+              user.eventUser[i].type = form.type;
+              user.eventUser[i].description = form.description;
+            }
+        }
+        await User.updateOne({_id: user._id}, {eventUser: user.eventUser
+        })
+
+       
+    }
+    
+    
 }
