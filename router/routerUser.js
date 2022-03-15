@@ -63,7 +63,8 @@ userRouter.get('/deconnexion', (req, res) => {
 //-------------------------------------profil
 userRouter.get('/profil', ifConnected, async (req, res) => {
     res.render('./template/user/profil.html.twig', {
-        user: req.session.user
+        user: req.session.user,
+        route: 'profil'
     })
 
 })

@@ -18,46 +18,45 @@
 
 		<div class="d-flex justify-content-between">
 
-			<a href="/profil" class="col-2 p-3 d-flex ">
-				<img class="col-6" src="./pictures/logo-weride.png" alt="logo_weride">
+
+			<a href="/profil" class="col-3 d-flex align-items-center">
+				<img class="col-3 ms-3" src="./pictures/logo-weride.png" alt="logo_weride">
 			</a>
 
-			<div class="col-6 ">
-				<div class="d-flex justify-content-around align-items-center header">
-					<img class="col-2 " src="./pictures/logo-weride.png" alt="profil image">
-					<div class="d-flex">
+			
+				<div class="col-6 d-flex justify-content-around align-items-center header">
+					<img class="col-2 p-1 rounded-circle" src="./pictures/ylies.jpg" alt="profil image">
+					
+					<div class="col-6 p-1 d-flex">
 
 						<div>
-							<h1>{{user.name}}
-								{{user.pseudo}}</h1>
+							<h1>{{user.name}} {{user.pseudo}}</h1>
 							<p class="text-white">Kawasaki Versys 650</p>
 						</div>
 					</div>
 
-					<div class="d-flex flex-column">
+					<div class="col-4 p-1 d-flex flex-column">
 						<button type="" class="p-0 mt-1 mb-1 btn btn-light">
-							<a href="/deconnexion" class="nav-link p-1">deconnexion</a>
+							<a href="/deconnexion" class="nav-link p-0">Deconnexion</a>
 						</button>
 						<button type="button" class="mt-1 mb-1 p-0  btn btn-light">
-							<a href="/nouvelleEvenement" class="nav-link p-1" aria-current="page">Organiser une sortie</a>
+							<a href="/nouvelleEvenement" class="nav-link p-0" aria-current="page">Organiser une sortie</a>
 						</button>
 						<button type="button" class="mt-1 mb-1 p-0   btn btn-light">
-							<a href="/modifierProfil" class="nav-link p-1" aria-current="page">modifier le Profil</a>
+							<a href="/modifierProfil" class="nav-link p-0" aria-current="page">Modifier mon Profil</a>
 						</button>
 					</div>
 				</div>
 
-			</div>
 
-			<div class="col-2"></div>
-		</div>
-
-		<ul class="nav nav-pills d-flex align-items-center justify-content-center ">
-			<li class="nav-item me-5">
-				<a href="/profil" class="nav-link active" aria-current="page">Profil</a>
+			<div class="col-3"></div>
+		</div >
+		<ul class="col-6 nav nav-pills mx-auto d-flex align-items-center justify-content-around text-center">
+			<li class="col-3 nav-item text-center {% if route == 'profil'  %} border-3 border-primary border-bottom {% endif %}">
+				<a href="/profil" class="text-decoration-none {% if route == 'profil'  %} text-primary {% else %} text-secondary {% endif %} " aria-current="page">Profil</a>
 			</li>
-			<li class="nav-item">
-				<a href="/listeEvenement" class="nav-link " aria-current="page">liste des sorties</a>
+			<li class="col-3 nav-item text-center text-secondary {% if route == 'listEvent'  %} text-primary border-3 border-primary border-bottom {% endif %}">
+				<a href="/listeEvenement" class="text-decoration-none {% if route == 'listEvent'  %} text-primary {% else %} text-secondary {% endif %}" aria-current="page">Sorties motos</a>
 			</li>
 		</ul>
 	</header>
