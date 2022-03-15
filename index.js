@@ -4,6 +4,7 @@ import session from "express-session";
 import { Config } from './Config.js';
 import userRouter from './router/routerUser.js';
 import eventRouter from './router/routerEvent.js';
+import motoRouter from './router/routerMoto.js';
 
 
 const app = express();
@@ -38,6 +39,7 @@ app.use(express.static('./assets'));
 app.use(router)
 app.use(userRouter) 
 app.use(eventRouter)
+app.use(motoRouter)
 
 //----------------------------------------lancement de serveur
 app.listen(8080, () => {

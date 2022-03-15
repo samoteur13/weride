@@ -3,79 +3,83 @@
 	<main class="">
 		{# section moto #}
 		<section class="card col-6 mt-3 container p-0">
-					<div class="d-flex justify-content-between">
-			        	<h2 class="card-title m-0 p-1">moto <span class="text-danger">(en construction)<span></h2>
-						<button type="button" class="mt-1 mb-1 p-0   btn btn-light">
-							<a href="/modifierProfil" class="nav-link p-0" aria-current="page">Ajouter une moto</a>
-						</button>
-					</div>
-
-					<hr>
-					<article class="row card-body border border-muted rounded m-2">
-						<h6 class="card-title">Kawasaki</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Versys 650</h5>
-					</article>
+			<div class="d-flex justify-content-between">
+				<h2 class="card-title m-0 p-1">Moto</h2>
+				<button type="button" class="m-1 p-0 btn btn-light">
+					<a href='/nouvelleMoto' class="nav-link p-0" aria-current="page">Ajouter une moto</a>
+				</button>
+			</div>
+			<hr class="m-0">
+			{% for moto in user.motoUser %}
+				<article class="row card-body text-center border border-muted rounded m-2">
+					<h6 class="card-title">{{moto.brand}}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{moto.model}}
+						{{moto.cylinder}}</h5>
+					<button type="button" class="mt-1 mb-1 p-0   btn btn-light">
+						<a href="/supprimerMoto/{{moto._id}}" class="nav-link p-0" aria-current="page">Supprimer</a>
+					</button>
+				</article>
+			{% endfor %}
 		</section>
 
-				{# section contact #}
-				<section class="card col-6 mt-3 bg-light container p-0">
-					        <h2 class="card-title m-0 p-1">Contact <span class="text-danger">(en construction)<span></h2>
-							<hr>
-							<article class="row card-body border border-muted rounded m-2">
-								<h6 class="card-title">06 62 31 22 79</h5>
-								<h6 class="card-subtitle mb-2 text-muted">email.test@test.fr</h5>
-								<h6 class="card-title">Marseille 9ème (13)</h5>
-							</article>
-				</section>
+		{# section contact #}
+		<section class="card col-6 mt-3 bg-light container p-0">
+			<h2 class="card-title m-0 p-1">Contact <span class="text-danger">(en construction)<span></h2>
+			<hr class="m-0">
+			<article class="row card-body border border-muted rounded m-2">
+				<h6 class="card-title">06 62 31 22 79</h5>
+				<h6 class="card-subtitle mb-2 text-muted">email.test@test.fr</h5>
+				<h6 class="card-title">Marseille 9ème (13)</h5>
+			</article>
+		</section>
 
-						{# section mes sortie #}
-						<section class="card col-6 mt-3 bg-light container p-0">
-							<h2 class="card-title m-0 p-1">Mes sorties</h2>
-							<hr>
-							{% for event in user.eventUser %}
-								<article class="row card-body border border-muted rounded m-2">
-									<div class="col-6 d-flex flex-column justify-content-between">
-										<div class=" d-flex  align-items-center">
-											<img class="col-2 me-2" src="./pictures/logo-weride.png" alt="profil image">
-											<div>
-												<h6 class="card-title">{{user.name}}
-													{{user.pseudo}}</h5>
-												<p class="card-subtitle mb-2 text-muted">Kawazaki Versys 650</p>
-											</div>
-										</div>
-										<h5 class="card-text">{{event.description}}</h5>
-										<p class="text-success m-0">nombre de rider 7+</p>
+				{# section mes sortie #}
+		<section class="card col-6 mt-3 bg-light container p-0">
+			<h2 class="card-title m-0 p-1">Mes sorties</h2>
+			<hr class="m-0">
+			{% for event in user.eventUser %}
+						<article class="row card-body border border-muted rounded m-2">
+							<div class="col-6 d-flex flex-column justify-content-between">
+								<div class=" d-flex  align-items-center">
+									<img class="col-2 me-2" src="./pictures/logo-weride.png" alt="profil image">
+									<div>
+										<h6 class="card-title">{{user.name}}
+											{{user.pseudo}}</h5>
+										<p class="card-subtitle mb-2 text-muted">Kawazaki Versys 650</p>
 									</div>
-									<div class="col-6">
-										<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1456402.9825108857!2d3.921280050206282!3d44.524634635339055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x12c9bf4344da5333%3A0x40819a5fd970220!2sMarseille!3m2!1d43.296482!2d5.3697799999999996!4m5!1s0x47f4ea516ae88797%3A0x408ab2ae4bb21f0!2sLyon!3m2!1d45.764043!2d4.835659!5e0!3m2!1sfr!2sfr!4v1647353202440!5m2!1sfr!2sfr" width="100%" height="" style="border-radius:5;" allowfullscreen="" loading="lazy"></iframe>
-										<div class="d-flex justify-content-between">
-											<a href="/supprimerEvenement/{{event._id}}" class="btn btn-danger">Supprimer</a>
-											<a href="/modifierEvenement/{{event._id}}" class="btn btn-light">Modifier</a>
-										</div>
-									</div>
-								</article>
-							{% endfor %}
-						</section>
+								</div>
+								<h5 class="card-text">{{event.description}}</h5>
+								<p class="text-success m-0">nombre de rider 7+</p>
+							</div>
+							<div class="col-6">
+								<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1456402.9825108857!2d3.921280050206282!3d44.524634635339055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x12c9bf4344da5333%3A0x40819a5fd970220!2sMarseille!3m2!1d43.296482!2d5.3697799999999996!4m5!1s0x47f4ea516ae88797%3A0x408ab2ae4bb21f0!2sLyon!3m2!1d45.764043!2d4.835659!5e0!3m2!1sfr!2sfr!4v1647353202440!5m2!1sfr!2sfr" width="100%" height="" style="border-radius:5;" allowfullscreen="" loading="lazy"></iframe>
+								<div class="d-flex justify-content-between">
+									<a href="/supprimerEvenement/{{event._id}}" class="btn btn-danger">Supprimer</a>
+									<a href="/modifierEvenement/{{event._id}}" class="btn btn-light">Modifier</a>
+								</div>
+							</div>
+						</article>
+			{% endfor %}
+		</section>
 
-						{# section je participe #}
-						<section class="card col-6 mt-3 bg-light container p-0">
-							        <h2 class="card-title m-0 p-1">Je participe <span class="text-danger">(en construction)<span></h2>
-									<hr>
-									<article class="row card-body border border-muted rounded m-2">
-										<p>
-											Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-									</article>
-					    </section>
+		{# section je participe #}
+		<section class="card col-6 mt-3 bg-light container p-0">
+				<h2 class="card-title m-0 p-1">Je participe <span class="text-danger">(en construction)<span></h2>
+				<hr class="m-0">
+			<article class="row card-body border border-muted rounded m-2">
+				<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+			</article>
+		</section>
 
-								{# Page photos #}
-								<section class="card col-6 mt-3 bg-light mb-3 container p-0">
-									             <h2 class="card-title m-0 p-1">Mes photos <span class="text-danger">(en construction)<span></h2>
-											<hr>
-											<article class="row ">
-												<img class="col-4 " src="./pictures/motard.jpg" alt="image de moto">
-												<img class="col-4 " src="./pictures/motard.jpg" alt="image de moto">
-												<img class="col-4 " src="./pictures/motard.jpg" alt="image de moto">
-											</article>
-								</section>
+		{# Page photos #}
+		<section class="card col-6 mt-3 bg-light mb-3 container p-0">
+			<h2 class="card-title m-0 p-1">Mes photos <span class="text-danger">(en construction)<span></h2>
+			<hr class="m-0">
+			<article class="row ">
+				<img class="col-4 " src="./pictures/motard.jpg" alt="image de moto">
+				<img class="col-4 " src="./pictures/motard.jpg" alt="image de moto">
+				<img class="col-4 " src="./pictures/motard.jpg" alt="image de moto">
+			</article>
+		</section>
 	</main>
 {% endblock %}
