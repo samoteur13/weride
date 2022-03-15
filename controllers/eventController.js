@@ -25,10 +25,9 @@ export class EventController {
 
     }
 
-    static async deleteEvent(e, a){
-        const user = await User.findOne({ _id: e }) //pour sauvegarder ensuite sur l'utilisateur
+    static async deleteEvent(id, eventId){
+        const user = await User.findOne({ _id: id }) //pour sauvegarder ensuite sur l'utilisateur
         let index;
-        let eventId = a //recup param de l'event
         for (let i = 0; i < user.eventUser.length; i++) {
             if (user.eventUser[i]._id == eventId) {
                  index = i;

@@ -40,12 +40,14 @@ userRouter.get('/connexion', (req, res) => {
 
 userRouter.post('/connexion', async (req, res) => {
     let login = await UserController.login(req.body)
+
     if (login && !login.errors) {
-        req.session.user = login
+        req.session.user = login //Ylies 
         res.redirect('/profil')
     } else {
         res.render('./template/authentification/login.html.twig', {
-            errors: login.errors
+            errors: login.errors,
+            disconnect: true
         })
     }
 })

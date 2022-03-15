@@ -51,16 +51,6 @@ export class UserController {
         }
     }
 
-    static async isConnected(id) {
-        let user = await User.findOne({ _id: id })
-        if (user) {
-            return user
-        } else {
-            return
-        }
-
-    }
-    
     static async getUser(id, excludeFields) {
         return await User.findOne({_id: id}, excludeFields)
     }
