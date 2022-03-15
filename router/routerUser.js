@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/userController.js';
+import ifConnected from '../customDependences/ifConnected.js';
+
 
 
 const userRouter = Router()
@@ -38,12 +40,14 @@ userRouter.get('/connexion', (req, res) => {
 
 userRouter.post('/connexion', async (req, res) => {
     let login = await UserController.login(req.body)
+
     if (login && !login.errors) {
-        req.session.userId = login
-        res.redirect('/profil/' + req.session.userId)
+        req.session.user = login //Ylies 
+        res.redirect('/profil')
     } else {
         res.render('./template/authentification/login.html.twig', {
-            errors: login.errors
+            errors: login.errors,
+            disconnect: true
         })
     }
 })
@@ -57,45 +61,35 @@ userRouter.get('/deconnexion', (req, res) => {
 })
 
 //-------------------------------------profil
-userRouter.get('/profil/:id', async (req, res) => {
-    let user = await UserController.isConnected(req.session.userId)
-    if (user) {
-        res.render('./template/user/profil.html.twig', {
-            user: user
-        })
-    } else {
-        res.redirect('/connexion')
-    }
+userRouter.get('/profil', ifConnected, async (req, res) => {
+    res.render('./template/user/profil.html.twig', {
+        user: req.session.user
+    })
 
 })
 
 //-------------------------------------updateprofil
-userRouter.get('/modifierProfil/:id', async (req, res) => {
-    let user = await UserController.isConnected(req.session.userId)
-    if (user) {
-        res.render('./template/user/updateProfil.html.twig', {
-            user: user
-        })
-    } else {
-        res.redirect('/connexion')
-    }
+userRouter.get('/modifierProfil', ifConnected, async (req, res) => {
+
+
+    res.render('./template/user/updateProfil.html.twig', {
+        user: req.session.user
+    })
+
 
 })
 
-userRouter.post('/modifierProfil/:id', async (req, res) => {
-    let user = await UserController.isConnected(req.session.userId)
-    let update = await UserController.updateUser(user._id, req.body)
+userRouter.post('/modifierProfil', ifConnected, async (req, res) => {
+    let update = await UserController.updateUser(req.session.user._id, req.body)
     if (!update.errors) {
-        res.redirect('/profil/' + user._id)
+        res.redirect('/profil')
     } else {
         res.render('./template/user/updateProfil.html.twig', {
-            user: user,
+            user: req.session.user,
             errors: update.errors
         })
     }
-
 })
-
 
 export default userRouter
 
