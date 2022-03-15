@@ -1,29 +1,36 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
 <main>
-	<h1>Listes des évenement</h1>
-	{% for event in events %}
-		{% for list in event.eventUser %}
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">{{list.description}}</h5>
-					<p class="card-text">depart :
-						{{list.departureLocation}}
-						le
-						{{list.startDate}}</p>
-					<p class="card-text">à
-						{{list.hour}}</p>
-					<p class="card-text">arriver :{{list.backLocation}}
-						le
-						{{list.endDate}}</p>
-					<p class="card-text">étape :{{list.step}}</p>
-					<p class="card-text">type :
-						{{list.step}}</p>
-					<a href="" class="btn btn-primary">Modifier</a>
-					<a href="" class="btn btn-danger">Supprimer</a>
-				</div>
-			</div>
-		{% endfor %}
-	{% endfor %}
+
+						<section class="card col-6 mt-3 mb-3 bg-light container p-0">
+							<h2 class="card-title m-0 p-1">Actualité</h2>
+							<hr>
+						{% for user in listUser %}
+							
+							{% for event in user.eventUser %}
+								<article class="row card-body border border-muted rounded m-2">
+									<div class="col-6 d-flex flex-column justify-content-between">
+										<div class=" d-flex  align-items-center">
+											<img class="col-2 me-2" src="./pictures/logo-weride.png" alt="profil image">
+											<div>
+												<h6 class="card-title">{{user.name}} {{user.pseudo}}</h5>
+												<p class="card-subtitle mb-2 text-muted">Kawazaki Versys 650</p>
+											</div>
+										</div>
+										<h5 class="card-text">{{event.description}}</h5>
+										<p class="text-success m-0">nombre de rider 7+</p>
+									</div>
+									<div class="col-6">
+										<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1456402.9825108857!2d3.921280050206282!3d44.524634635339055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x12c9bf4344da5333%3A0x40819a5fd970220!2sMarseille!3m2!1d43.296482!2d5.3697799999999996!4m5!1s0x47f4ea516ae88797%3A0x408ab2ae4bb21f0!2sLyon!3m2!1d45.764043!2d4.835659!5e0!3m2!1sfr!2sfr!4v1647353202440!5m2!1sfr!2sfr" width="100%" height="" style="border-radius:5;" allowfullscreen="" loading="lazy"></iframe>
+										<div class="d-flex justify-content-between">
+											<a href="/supprimerEvenement/{{event._id}}" class="btn btn-primary">Je participe</a>
+											<a href="/modifierEvenement/{{event._id}}" class="btn btn-light">En savoir plus</a>
+										</div>
+									</div>
+								</article>
+							{% endfor %}
+
+						{% endfor %}
+						</section>
 </main>
 {% endblock %}

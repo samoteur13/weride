@@ -1,31 +1,34 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
 	<main>
+
+		
 		<div class="container">
 			<div class="row ">
-				<form class="col-md-6 mx-auto mt-5" method="post" action="nouvelleEvenement">
-					<h1>créer un évenement</h1>
-					{% for err in errors %}
-						<p class="text-danger">{{err}}</p>
-					{% endfor %}
-
-					<div>
+					<form class="col-md-6 mx-auto p-3 my-5 bg-light rounded" method="post" action="nouvelleEvenement">
+				<h1 class="text-primary">créer un évenement</h1>
+			<hr class="m-0">
+				{% for err in errors %}
+					<p class="text-danger">{{err}}</p>
+				{% endfor %}
+				
+			<div>
 						<label for="startDate">Date de départ :</label>
 						<input type="date" class="form-control" id="startDate" name="startDate" placeholder="" value="">
 					</div>
-					<div>
+				<div>
 						<label for="hour">Heure de départ :</label>
 						<input type="time" class="form-control" id="hour" name="hour" placeholder="" value="">
 					</div>
-					<div>
+				<div>
 						<label for="endDAte">Date de retour :</label>
 						<input type="date" class="form-control" id="endDate" name="endDate" placeholder="" value="">
 					</div>
-					<div>
+				<div>
 						<label for="departureLocation">Lieu de départ</label>
 						<input type="text" class="form-control" id="departureLocation" name="departureLocation" placeholder="" value="">
 					</div>
-					<div>
+				<div>
 						<label for="backLocation">Lieu de retour :</label>
 						<input type="mail" class="form-control" id="backLocation" name="backLocation" placeholder="" value="">
 					</div>
@@ -33,7 +36,7 @@
 						<label for="step">Etape :</label>
 						<input type="text" class="form-control" id="step" name="step" placeholder="" value="">
 					</div>
-					<div class="row mt-2 mb-2">
+									<div class="row mt-2 mb-2">
 						<div>
 							<input type="radio" id="pepere" name="type" value="pepere">
 							<label for="pepere">pépére</label>
@@ -47,12 +50,12 @@
 							<label for="gaz">gazzZ</label>
 						</div>
 					</div>
-					<div>
+										<div>
 						<label for="description">Description :</label>
 						<input type="textera" class="form-control" id="description" name="description" placeholder="" value="">
 					</div>
-					<button type="submit" class="btn btn-primary">valider</button>
-				</form>
+				<button type="submit" class="btn btn-primary">valider</button>
+			</form>
 			</div>
 		</div>
 	</main>
