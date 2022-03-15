@@ -13,7 +13,8 @@ eventRouter.get('/listeEvenement',ifConnected ,async (req, res) => {
     const listUser = await User.find()
         res.render('./template/event/listEvent.html.twig', {
             events: listUser,
-            user:user
+            user: user,
+            route: 'listEvent'
         })
 })
 
