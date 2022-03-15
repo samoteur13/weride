@@ -1,13 +1,5 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
-	<div>
-		<h1>bienvenue
-			{{user.name}}</h1>
-		<p>Nom :
-			{{user.firstName}}</p>
-		<p>Pseudo :
-			{{user.pseudo}}</p>
-	</div>
 	<section>
 		<h2>Mes sorties</h2>
 		{% for event in user.eventUser %}

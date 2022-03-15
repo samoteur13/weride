@@ -1,31 +1,64 @@
 {% if disconnect %}
 
-    <header class="d-flex justify-content-between align-items-center border-bottom shadow">
-        <a href="/" class="col-1 p-3 d-flex  text-dark text-decoration-none">
-          <img class="col-7" src="./pictures/logo-weride.png" alt="logo_weride">
-        </a>
-        <ul class="nav nav-pills">
-          <li class="nav-item"><a href="/inscription" class="nav-link text-secondary">Inscription</a></li>
-          <li class="nav-item"><a href="/connexion" class="nav-link text-secondary">Connexion</a></li>
-        </ul>
-      </header>
-      {% else %}
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-        <span class="fs-4">Simple header</span>
-      </a>
+	<header class="d-flex justify-content-between align-items-center border-bottom shadow">
+		<a href="/" class="col-1 p-3 d-flex  ">
+			<img class="col-7" src="./pictures/logo-weride.png" alt="logo_weride">
+		</a>
+		<ul class="nav nav-pills">
+			<li class="nav-item">
+				<a href="/inscription" class="nav-link text-secondary">Inscription</a>
+			</li>
+			<li class="nav-item">
+				<a href="/connexion" class="nav-link text-secondary">Connexion</a>
+			</li>
+		</ul>
+	</header>
+{% else %}
+	<header class="border-bottom shadow">
 
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="/profil" class="nav-link active" aria-current="page">Profil</a></li>
-        <li class="nav-item"><a href="/modifierProfil" class="nav-link " aria-current="page">modifier le Profil</a></li>
-        <li class="nav-item"><a href="/nouvelleEvenement" class="nav-link " aria-current="page">Organiser une sortie</a></li>
-        <li class="nav-item"><a href="/listeEvenement" class="nav-link " aria-current="page">liste des sorties</a></li>
-        <li class="nav-item"><a href="/deconnexion" class="nav-link">deconnexion</a></li>
-      </ul>
-    </header>
+		<div class="d-flex justify-content-between">
+
+		<a href="/profil" class="col-2 p-3 d-flex ">
+			<img class="col-6" src="./pictures/logo-weride.png" alt="logo_weride">
+		</a>
+
+			<div class="col-6 ">
+				<div class="d-flex justify-content-around align-items-center header">
+          <img class="col-2 " src="./pictures/logo-weride.png" alt="profil image">
+					<div class="d-flex">
+						
+						<div>
+							<h1>{{user.name}}
+								{{user.pseudo}}</h1>
+							<p class="text-white">Kawasaki Versys 650</p>
+						</div>
+					</div>
+
+					<div class="d-flex flex-column">
+						<button type="" class="p-0 mt-1 mb-1 btn btn-light">
+							<a href="/deconnexion" class="nav-link p-1">deconnexion</a>
+						</button>
+						<button type="button" class="mt-1 mb-1 p-0  btn btn-light">
+							<a href="/nouvelleEvenement" class="nav-link p-1" aria-current="page">Organiser une sortie</a>
+						</button>
+						<button type="button" class="mt-1 mb-1 p-0   btn btn-light">
+							<a href="/modifierProfil" class="nav-link p-1" aria-current="page">modifier le Profil</a>
+						</button>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="col-2"></div>
+		</div>
+
+		<ul class="nav nav-pills d-flex align-items-center justify-content-center ">
+			<li class="nav-item me-5">
+				<a href="/profil" class="nav-link active" aria-current="page">Profil</a>
+			</li>
+			<li class="nav-item">
+				<a href="/listeEvenement" class="nav-link " aria-current="page">liste des sorties</a>
+			</li>
+		</ul>
+	</header>
 {% endif %}
-      
-  
-    
-
-    
