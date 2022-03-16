@@ -20,7 +20,7 @@ motoRouter.post('/nouvelleMoto', ifConnected, async (req, res) => {
     const newMoto = await MotoController.newMoto(req.body, req.session.user)
     if (newMoto.errors) {
         res.render('./template/moto/newMoto.html.twig', {
-            errors: newEvent.errors,
+            errors: newMoto.errors,
             user: req.session.user
         })
     } else {

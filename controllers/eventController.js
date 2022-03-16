@@ -47,6 +47,7 @@ export class EventController {
               user.eventUser[i].backLocation = form.backLocation;
               user.eventUser[i].step = form.step;
               user.eventUser[i].type = form.type;
+              user.eventUser[i].title = form.title;
               user.eventUser[i].description = form.description;
             }
         }

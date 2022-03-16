@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 
 const eventShema = mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, "Saisir un titre"]
+    },
     startDate: {
         type: String,
         required: [true, "Saisir une date départ"]
@@ -24,7 +28,7 @@ const eventShema = mongoose.Schema({
     },
     step: {
         type: String,
-        required: [true, "Saisir au moin une étape"]
+        required: [true, "Saisir au moins une étape"]
     },
     type: {
         type: String,
