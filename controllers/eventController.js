@@ -56,6 +56,24 @@ export class EventController {
 
        
     }
-    
-    
+
+    static async eventJoin(idEvent,idUserEvent) {
+        const user = await User.findOne({ _id: idUserEvent  } ,{ password: 0 } ) //pour sauvegarder ensuite sur l'utilisateur
+        let objectError = {
+            errors : []
+        }
+        let err = ""
+        
+        const index = user.eventUser.findIndex(eventUser => eventUser._id == idEvent) 
+        // methode js qui permet de recuperer l'index de l'event que l'on veut
+        let event = user.eventUser[index]// recupere l'event que l'on veut grace à son index
+        console.log(user.eventUser[index].riderJoin)
+
+         await user.eventUser[index].riderJoin.push(idUserEvent)
+
+        await User.updateOne({_id: user._id}, {eventUser: user.eventUser})
+        await user.save()
+
+    }
+
 }

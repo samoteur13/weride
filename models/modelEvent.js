@@ -38,6 +38,7 @@ const eventShema = mongoose.Schema({
         type: String,
         required: [true, "Une petite description !!"]
     },
+    riderJoin:  Array
 
 })
 

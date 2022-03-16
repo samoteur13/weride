@@ -10,7 +10,9 @@ const eventRouter = Router()
 //-------------------------------------listEvent
 eventRouter.get('/listeEvenement',ifConnected ,async (req, res) => {
     const user = req.session.user
+    console.log(user._id)
     const listUser = await User.find()
+    console.log(listUser[1]._id)
         res.render('./template/event/listEvent.html.twig', {
             listUser: listUser,
             user: user,
@@ -58,8 +60,15 @@ eventRouter.post('/modifierEvenement/:id',ifConnected, async (req, res) => {
 
 //-------------------------------------deleteEvent
 eventRouter.get('/supprimerEvenement/:id',ifConnected, async (req, res) => {
+    
     const deleteUser = await EventController.deleteEvent(req.session.user._id, req.params.id)
     res.redirect('/profil')
+})
+
+//-------------------------------------joinEvent
+eventRouter.get('/rejoindreEvenement/:idEvent/:idUserEvent',ifConnected, async (req, res) => {
+     const eventJoin = await EventController.eventJoin(req.params.idEvent, req.params.idUserEvent)
+    res.redirect('/listeEvenement')
 })
 
 
