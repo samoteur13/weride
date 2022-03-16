@@ -2,14 +2,14 @@ import Event from "../models/modelEvent.js"
 import User from "../models/modelUser.js"
 
 export class EventController {
-    static async newEvent(event, user){
+    static async newEvent(event, user) {
 
         let objectError = {
             errors: []
         }
 
         const newEvent = new Event(event)
-        
+
         //---------------------------- permet de récupérer les erreurs
         let err = await newEvent.validateSync()
         if (err) {
@@ -17,7 +17,7 @@ export class EventController {
                 objectError.errors.push(Object.values(err.errors)[i].message);
             }
             return objectError;
-        }else{
+        } else {
             await user.eventUser.push(newEvent)
             await user.save()
             return ""
@@ -25,12 +25,12 @@ export class EventController {
 
     }
 
-    static async deleteEvent(id, eventId){
+    static async deleteEvent(id, eventId) {
         const user = await User.findOne({ _id: id }) //pour sauvegarder ensuite sur l'utilisateur
         let index;
         for (let i = 0; i < user.eventUser.length; i++) {
             if (user.eventUser[i]._id == eventId) {
-                 index = i;
+                index = i;
             }
         }
         user.eventUser.splice(index, 1) //supprimé l'élèment ciblé
@@ -38,40 +38,40 @@ export class EventController {
     }
 
     static async updateEvent(user, userId, form) {
-        for (let i = 0; i<user.eventUser.length; i++){
-            if(user.eventUser[i]._id == userId){
-              user.eventUser[i].startDate = form.startDate;
-              user.eventUser[i].hour = form.hour;
-              user.eventUser[i].endDate = form.endDate;
-              user.eventUser[i].departureLocation = form.departureLocation;
-              user.eventUser[i].backLocation = form.backLocation;
-              user.eventUser[i].step = form.step;
-              user.eventUser[i].type = form.type;
-              user.eventUser[i].title = form.title;
-              user.eventUser[i].description = form.description;
+        for (let i = 0; i < user.eventUser.length; i++) {
+            if (user.eventUser[i]._id == userId) {
+                user.eventUser[i].startDate = form.startDate;
+                user.eventUser[i].hour = form.hour;
+                user.eventUser[i].endDate = form.endDate;
+                user.eventUser[i].departureLocation = form.departureLocation;
+                user.eventUser[i].backLocation = form.backLocation;
+                user.eventUser[i].step = form.step;
+                user.eventUser[i].type = form.type;
+                user.eventUser[i].title = form.title;
+                user.eventUser[i].description = form.description;
             }
         }
-        await User.updateOne({_id: user._id}, {eventUser: user.eventUser
+        await User.updateOne({ _id: user._id }, {
+            eventUser: user.eventUser
         })
 
-       
+
     }
 
-    static async eventJoin(idEvent,idUserEvent) {
-        const user = await User.findOne({ _id: idUserEvent  } ,{ password: 0 } ) //pour sauvegarder ensuite sur l'utilisateur
+    static async eventJoin(idEvent, idUserEvent) {
+        const user = await User.findOne({ _id: idUserEvent }, { password: 0 }) //pour sauvegarder ensuite sur l'utilisateur
         let objectError = {
-            errors : []
+            errors: []
         }
         let err = ""
-        
-        const index = user.eventUser.findIndex(eventUser => eventUser._id == idEvent) 
+
+        const index = user.eventUser.findIndex(eventUser => eventUser._id == idEvent)
         // methode js qui permet de recuperer l'index de l'event que l'on veut
         let event = user.eventUser[index]// recupere l'event que l'on veut grace à son index
-        console.log(user.eventUser[index].riderJoin)
 
-         await user.eventUser[index].riderJoin.push(idUserEvent)
+        await user.eventUser[index].riderJoin.push(idUserEvent)
 
-        await User.updateOne({_id: user._id}, {eventUser: user.eventUser})
+        await User.updateOne({ _id: user._id }, { eventUser: user.eventUser })
         await user.save()
 
     }

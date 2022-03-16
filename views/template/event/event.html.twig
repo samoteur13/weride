@@ -1,7 +1,54 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
 	<main>
+		<article class="col-6 mx-auto card-body bg-light border border-muted rounded m-2">
+			<h3 class="">{{event.title}}</h1>
+			<hr class="m-0">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1456402.9825108857!2d3.921280050206282!3d44.524634635339055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x12c9bf4344da5333%3A0x40819a5fd970220!2sMarseille!3m2!1d43.296482!2d5.3697799999999996!4m5!1s0x47f4ea516ae88797%3A0x408ab2ae4bb21f0!2sLyon!3m2!1d45.764043!2d4.835659!5e0!3m2!1sfr!2sfr!4v1647353202440!5m2!1sfr!2sfr" width="100%" height="" style="border-radius:5;" allowfullscreen="" loading="lazy"></iframe>
 
+			<div class=" d-flex mb-3 align-items-center">
+				<img class="col-2 me-2 rounded-circle" src="../pictures/ylies.jpg" alt="profil image">
+				<div>
+					<h6 class="card-title">{{user.pseudo}}</h5>
+
+					<p class="card-subtitle mb-2 text-muted">{% for moto in user.motoUser %}{{moto.brand}} {{moto.model}} {{moto.cylinder}}{% endfor %}</p>
+				</div>
+			</div>
+			<div class="d-flex justify-content-between">
+				<p class="card-text text-success my-1">Date de départ</p>
+				<p class="card-text text-secondary my-1">{{event.startDate}}</p>
+			</div>
+			<div class="d-flex justify-content-between">
+				<p class="card-text text-success my-1">Heure de départ</p>
+				<p class="card-text text-secondary my-1">{{event.hour}}</p>
+			</div>
+			<div class="d-flex justify-content-between">
+				<p class="card-text text-success my-1">Lieu de départ</p>
+				<p class="card-text text-secondary my-1">{{event.departureLocation}}</p>
+			</div>
+			<div class="d-flex justify-content-between">
+				<p class="card-text text-success my-1">Lieu de retour</p>
+				<p class="card-text text-secondary my-1">{{event.backLocation}}</p>
+			</div>
+			<div class="d-flex justify-content-between">
+				<p class="card-text text-success my-1">Etape</p>
+				<p class="card-text text-secondary my-1">{{event.step}}</p>
+			</div>
+			<div class="d-flex justify-content-between">
+				<p class="card-text text-success my-1">Niveau</p>
+				<p class="card-text text-secondary my-1">{{event.type}}</p>
+			</div>
+
+			<p class="card-text text-success my-1">Description</p>
+			<p class="card-text text-secondary my-3">{{event.description}}</p>
+			<p class="text-success m-0">Rider 7+</p>
+
+
+			<div class="d-flex justify-content-end">
+				<a href="/supprimerEvenement/{{event._id}}" class="btn btn-danger mx-2">Supprimer</a>
+				<a href="/modifierEvenement/{{event._id}}" class="btn btn-light border border-secondary rounded">Modifier</a>
+			</div>
+		</article>
 
 	</main>
 {% endblock %}
