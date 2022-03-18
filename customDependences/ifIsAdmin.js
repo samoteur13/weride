@@ -8,11 +8,10 @@ let ifIsAdmin = async (req, res, next) => {
         // la variable updateUser correspond à l'objet utilisateur 
         if (req.session.user.status == 2) {
             next() // permet de passer au middleware suivant. en l'occurence dans ce projet, le corps de la route (middleware final)
-        }
-       
-    } else {
+        }else {
         res.redirect('/profil')
-    }
+        }  
+    } 
 
 }
 

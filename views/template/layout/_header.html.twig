@@ -48,6 +48,11 @@
 			<li class="col-3 nav-item text-center text-secondary {% if route == 'listEvent'  %} text-primary border-3 border-primary border-bottom {% endif %}">
 				<a href="/listeEvenement" class="text-decoration-none {% if route == 'listEvent'  %} text-primary {% else %} text-secondary {% endif %}" aria-current="page">Sorties motos</a>
 			</li>
+			{% if user.status == 2 %}
+			<li class="col-3 nav-item text-center text-secondary {% if route == 'listUsers'  %} text-primary border-3 border-primary border-bottom {% endif %}">
+				<a href="/listeUtilisateurs" class="text-decoration-none {% if route == 'listUsers'  %} text-primary {% else %} text-secondary {% endif %}" aria-current="page">Liste des Riders</a>
+			</li>
+			{% endif %}
 		</ul>
 	</header>
 {% endif %}
