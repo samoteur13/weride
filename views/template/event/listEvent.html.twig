@@ -6,6 +6,7 @@
 			<hr class="mt-0">
 			{% for userEvent in listUser %}
 
+
 				{% for event in userEvent.eventUser %}
 					<article class="row card-body border border-muted rounded m-2">
 						<div class="col-6 d-flex flex-column justify-content-between">
@@ -36,14 +37,22 @@
 									{% endif %}
 								{% endfor %}
 
-								{% if event.riderJoin.length == 0 %}
-									<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
-								{% elseif iParticipate %}
-									<a href="/annulerParticipation/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-danger">Annuler la partipation</a>
-								{% else %}
-									<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
-								{% endif %}
-								<a href="/evenement/{{event._id}}" class="btn btn-light">En savoir plus</a>
+							{% if event._id == user._id %}
+							<p class="text-danger">{{userEvent._id}} </p>
+									<p>{{user._id}}</p>
+							{% endif %}
+							
+				
+									{% if event.riderJoin.length == 0 %}
+									
+
+										<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
+									{% elseif iParticipate %}
+										<a href="/annulerParticipation/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-danger">Annuler la partipation</a>
+									{% else %}
+										<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
+									{% endif %}
+								<a href="/evenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light">En savoir plus</a>
 
 							</div>
 						</div>

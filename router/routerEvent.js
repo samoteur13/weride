@@ -10,7 +10,7 @@ const eventRouter = Router()
 //-------------------------------------listEvent
 eventRouter.get('/listeEvenement', ifConnected, async (req, res) => {
     const user = await User.findOne({_id : req.session.user._id})
-    const listUser = await User.find().select(+user)
+    const listUser = await User.find( { _id: { $ne: req.session.user._id } } ) //permet de retiré un élément $ne === ! 
     res.render('./template/event/listEvent.html.twig', {
         listUser: listUser,
         user: req.session.user,
@@ -57,7 +57,8 @@ eventRouter.post('/modifierEvenement/:id', ifConnected, async (req, res) => {
 })
 
 //-------------------------------------Event
-eventRouter.get('/evenement/:id', ifConnected, async (req, res) => {
+eventRouter.get('/evenement/:id/:test', ifConnected, async (req, res) => {
+    console.log(req.params);
     let user = req.session.user
     const index = user.eventUser.findIndex(eventUser => eventUser._id == req.params.id) // methode js qui permet de recuperer l'index de l'event que l'on veut
     let event = user.eventUser[index]// recupere l'event que l'on veut grace à son index
