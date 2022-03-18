@@ -21,6 +21,10 @@ const userShema = mongoose.Schema({
         type:String,
         required: [true, 'Veuillez saisir votre email']
     },
+    status:{
+        type: Number,
+        
+    },
     eventUser: Array,
     motoUser: Array
 

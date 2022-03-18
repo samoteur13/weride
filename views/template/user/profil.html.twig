@@ -1,6 +1,19 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
+
+{% if not inspectedUser %}
+	{% set inspectedUser = user %}
+{% endif %}
+
 	<main class="">
+
+	{# section moto #}
+		<section class="card col-6 mt-3 container p-0 d-flex align-items-center">
+			<img class="col-2 my-1 rounded-circle" src="../pictures/ylies.jpg" alt="profil image">
+			<h6 class="card-title">{{inspectedUser.pseudo}}</h5>
+			<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}} {{user.motoUser[0].model}} {{user.motoUser[0].cylinder}}</p>
+			
+		</section>
 		{# section moto #}
 		<section class="card col-6 mt-3 container p-0">
 			<div class="d-flex justify-content-between">
@@ -10,7 +23,7 @@
 				</button>
 			</div>
 			<hr class="m-0">
-			{% for moto in user.motoUser %}
+			{% for moto in inspectedUser.motoUser %}
 				<article class="row card-body text-center border border-muted rounded m-2">
 					<h6 class="card-title">{{moto.brand}}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">{{moto.model}}
@@ -37,14 +50,14 @@
 		<section class="card col-6 mt-3 bg-light container p-0">
 			<h2 class="card-title m-0 p-1">Mes sorties</h2>
 			<hr class="m-0">
-			{% for event in user.eventUser %}
+			{% for event in inspectedUser.eventUser %}
 						<article class="row card-body d-flex justify-content-end border border-muted rounded m-2">
 							<div class="col-6 d-flex flex-column justify-content-between">
 								<div class=" d-flex  align-items-center">
 									<img class="col-2 me-2" src="./pictures/logo-weride.png" alt="profil image">
 									<div>
-										<h6 class="card-title">{{user.pseudo}}</h5>
-										<p class="card-subtitle mb-2 text-muted">{% for moto in user.motoUser %}{{moto.brand}} {{moto.model}} {{moto.cylinder}}{% endfor %}</p>
+										<h6 class="card-title">{{inspectedUser.pseudo}}</h5>
+										<p class="card-subtitle mb-2 text-muted">{% for moto in inspectedUser.motoUser %}{{moto.brand}} {{moto.model}} {{moto.cylinder}}{% endfor %}</p>
 									</div>
 								</div>
 								<h5 class="card-text">{{event.title}}</h5>
@@ -54,7 +67,7 @@
 								<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1456402.9825108857!2d3.921280050206282!3d44.524634635339055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x12c9bf4344da5333%3A0x40819a5fd970220!2sMarseille!3m2!1d43.296482!2d5.3697799999999996!4m5!1s0x47f4ea516ae88797%3A0x408ab2ae4bb21f0!2sLyon!3m2!1d45.764043!2d4.835659!5e0!3m2!1sfr!2sfr!4v1647353202440!5m2!1sfr!2sfr" width="100%" height="" style="border-radius:5;" allowfullscreen="" loading="lazy"></iframe>
 							</div>
 								
-							<a href="/evenement/{{event._id}}/{{user._id}}" class="btn btn-light text-primary col-4">En savoir plus</a>
+							<a href="/evenement/{{event._id}}/{{inspectedUser._id}}" class="btn btn-light text-primary col-4">En savoir plus</a>
 								
 						</article>
 			{% endfor %}
