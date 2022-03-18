@@ -5,6 +5,7 @@ import { Config } from './Config.js';
 import userRouter from './router/routerUser.js';
 import eventRouter from './router/routerEvent.js';
 import motoRouter from './router/routerMoto.js';
+import adminRouter from './router/routerAdmin.js';
 
 
 const app = express();
@@ -40,6 +41,7 @@ app.use(router)
 app.use(userRouter) 
 app.use(eventRouter)
 app.use(motoRouter)
+app.use(adminRouter)
 
 //----------------------------------------lancement de serveur
 app.listen(8080, () => {

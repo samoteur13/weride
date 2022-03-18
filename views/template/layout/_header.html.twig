@@ -31,7 +31,7 @@
 
 						<div>
 							<h1>{{user.pseudo}}</h1>
-							<p class="text-white">Kawasaki Versys 650</p>
+							<p class="text-white">{% for moto in user.motoUser %}{{moto.brand}} {{moto.model}} {{moto.cylinder}}{% endfor %}</p>
 						</div>
 					</div>
 
