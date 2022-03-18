@@ -7,9 +7,9 @@
 
 	<main class="">
 
-	{# section moto #}
+	{# section profil #}
 		<section class="card col-6 mt-3 container p-0 d-flex align-items-center">
-			<img class="col-2 my-1 rounded-circle" src="../pictures/ylies.jpg" alt="profil image">
+			<img class="col-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.image}}" class="card-img-top"/>
 			<h6 class="card-title">{{inspectedUser.pseudo}}</h5>
 			<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}} {{user.motoUser[0].model}} {{user.motoUser[0].cylinder}}</p>
 			
@@ -26,7 +26,7 @@
 			{% for moto in inspectedUser.motoUser %}
 				<article class="row card-body text-center border border-muted rounded m-2">
 					<h5 class="card-title">{{moto.brand}}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">{{moto.model}}{{moto.cylinder}}</h6>
+					<h6 class="card-subtitle mb-2 text-muted">{{moto.model}} {{moto.cylinder}}</h6>
 					<button type="button" class="mt-1 mb-1 p-0   btn btn-light">
 						<a href="/supprimerMoto/{{moto._id}}" class="nav-link p-0" aria-current="page">Supprimer</a>
 					</button>

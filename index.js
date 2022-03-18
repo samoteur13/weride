@@ -6,9 +6,14 @@ import userRouter from './router/routerUser.js';
 import eventRouter from './router/routerEvent.js';
 import motoRouter from './router/routerMoto.js';
 import adminRouter from './router/routerAdmin.js';
+import fileUpload from 'express-fileupload';
+
 
 
 const app = express();
+app.use(fileUpload({
+    createParentPath: true
+}));
 const router = express.Router()
 const database = "mongodb+srv://" + Config.dbUserName + ":" + Config.dbPassword + "@" + Config.dbClusterName + "/" + Config.dbNameDatabase + "?retryWrites=true&w=majority"
 

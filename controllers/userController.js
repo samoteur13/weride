@@ -1,11 +1,18 @@
 import User from "../models/modelUser.js";
 import { cryptPassword } from "../customDependences/password.js";
 import { comparePassword } from "../customDependences/password.js";
+import path from 'path';
+import { fileURLToPath } from 'url'; //pour pouvoir utiliser les chemin absolu
+import pictureManager from "../customDependences/pictureManager.js";
+
+const __filename = fileURLToPath(import.meta.url); //retourne le chemin absolu du fichier en cours
+const __dirname = path.dirname(__filename); //retourne le chemin absolu de la racine du projet
+const FileUrl = path.join(__dirname, '..', 'assets/images/')//Je créé le chemin absolu qui me permetra d'enregistrer mes fichiers (image)
 
 export class UserController {
 
-    static async subscribe(user) {
-
+    static async subscribe(req) {
+        let user = req.body
         let objectError = {
             errors: []
         }
@@ -14,7 +21,7 @@ export class UserController {
         user.status = 1
 
         const newUser = new User(user)
-
+        const directory = `${FileUrl}/userImages/${newUser._id}` // chemin qui correspond au dossier de l'image du pokemon
         //---------------------------- permet de récupérer les erreurs
         let err = await newUser.validateSync()
         if (err) {
@@ -23,6 +30,10 @@ export class UserController {
             }
             return objectError;
         }
+        
+        
+        let image = await pictureManager.addPicture(req.files.image, directory, newUser._id); //j'ajoute une image dans le dossier specifié
+        newUser.image = image
         newUser.save()
         return newUser
     }

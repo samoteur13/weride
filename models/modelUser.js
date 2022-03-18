@@ -1,9 +1,12 @@
 import mongoose from "mongoose";
 
 const userShema = mongoose.Schema({
+    image: {
+        type:String
+    },
     name: {
         type:String,
-        required: [true, "Veuillez saisir votre prénom "]
+        required: [true, "Veuillez saisir votre prénom"]
     },
     firstName: {
         type:String,

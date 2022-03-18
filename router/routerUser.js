@@ -23,7 +23,7 @@ userRouter.get('/inscription', async (req, res) => {
 })
 
 userRouter.post('/inscription', async (req, res) => {
-    let user = await UserController.subscribe(req.body)
+    let user = await UserController.subscribe(req)
     if (user && !user.errors) {
         res.redirect('/connexion')
     } else {
