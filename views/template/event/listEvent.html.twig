@@ -15,7 +15,7 @@
 								<div>
 									<h6 class="card-title">{{userEvent.name}}
 										{{userEvent.pseudo}}</h5>
-									<p class="card-subtitle mb-2 text-muted">Kawazaki Versys 650</p>
+									<p class="card-subtitle mb-2 text-muted">{% for moto in userEvent.motoUser %}{{moto.brand}} {{moto.model}} {{moto.cylinder}}{% endfor %}</p>
 								</div>
 							</div>
 							<h5 class="card-text">{{event.title}}</h5>
