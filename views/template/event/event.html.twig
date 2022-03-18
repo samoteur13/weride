@@ -9,9 +9,15 @@
 			<div class=" d-flex mb-3 align-items-center">
 				<img class="col-2 me-2 rounded-circle" src="http://localhost:8080/pictures/ylies.jpg" alt="profil image">
 				<div>
-					<h6 class="card-title">{{user.pseudo}}</h5>
+					<h6 class="card-title">{{userEvent.pseudo}}</h5>
 
-					<p class="card-subtitle mb-2 text-muted">{% for moto in user.motoUser %}{{moto.brand}} {{moto.model}} {{moto.cylinder}}{% endfor %}</p>
+					<p class="card-subtitle mb-2 text-muted">
+						{% for moto in userEvent.motoUser %}
+							{{moto.brand}}
+							{{moto.model}}
+							{{moto.cylinder}}
+						{% endfor %}
+					</p>
 				</div>
 			</div>
 			<div class="d-flex justify-content-between">
@@ -41,13 +47,15 @@
 
 			<p class="card-text text-success my-1">Description</p>
 			<p class="card-text text-secondary my-3">{{event.description}}</p>
-			<p class="text-success m-0">Rider 7+</p>
+			<p class="text-success m-0">Rider
+				{{event.riderJoin.length}}+</p>
 
-
+			{% if user.id == userEvent.id %}
 			<div class="d-flex justify-content-end">
 				<a href="/supprimerEvenement/{{event._id}}" class="btn btn-danger mx-2">Supprimer</a>
 				<a href="/modifierEvenement/{{event._id}}" class="btn btn-light border border-secondary rounded">Modifier</a>
 			</div>
+			{% endif %}
 		</article>
 
 	</main>

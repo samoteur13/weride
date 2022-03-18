@@ -57,14 +57,15 @@ eventRouter.post('/modifierEvenement/:id', ifConnected, async (req, res) => {
 })
 
 //-------------------------------------Event
-eventRouter.get('/evenement/:id/:test', ifConnected, async (req, res) => {
-    console.log(req.params);
-    let user = req.session.user
-    const index = user.eventUser.findIndex(eventUser => eventUser._id == req.params.id) // methode js qui permet de recuperer l'index de l'event que l'on veut
-    let event = user.eventUser[index]// recupere l'event que l'on veut grace à son index
+eventRouter.get('/evenement/:eventId/:userId', ifConnected, async (req, res) => {
+
+    let userEvent = await User.findOne({_id: req.params.userId })
+    const index = userEvent.eventUser.findIndex(eventUser => eventUser._id == req.params.eventId) // methode js qui permet de recuperer l'index de l'event que l'on veut
+    let event = userEvent.eventUser[index]// recupere l'event que l'on veut grace à son index
     res.render('./template/event/event.html.twig', {
-        user: req.session.user,
-        event: event
+        userEvent: userEvent,
+        event: event,
+        user: req.session.user
     })
 })
 
