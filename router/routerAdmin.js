@@ -20,7 +20,21 @@ adminRouter.get('/listeUtilisateurs', ifConnected, ifIsAdmin, async (req, res) =
 
 })
 
+//-----------------------------profil des autres utilisateurs
+adminRouter.get('/profil/:id', ifConnected, async (req, res) => {
+    let inspectedUser = await User.findOne({_id: req.params.id})
+    res.render('./template/user/profil.html.twig', {
+        inspectedUser: inspectedUser,
+        user: req.session.user
+    })
 
+})
+
+//-----------------------------Supprimer un utilisateur
+adminRouter.get('/supprimerUtilisateur/:id', ifConnected, async (req, res) => {
+    const deleteUser = await User.deleteOne({_id: req.params.id})
+    res.redirect('/listeUtilisateurs')
+})
 
 export default adminRouter
 

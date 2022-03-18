@@ -7,7 +7,8 @@
 				    <img class="col-2 me-2" src="./pictures/logo-weride.png" alt="profil image">
 					<h6 class="card-title">{{user.pseudo}}</h5>
 				</div>
-				<a href="/profil/{{user._id}}" class="btn btn-light">En savoir plus</a>
+				<a href="/profil/{{user._id}}" class="btn btn-primary">En savoir plus</a>
+					<a href="/supprimerUtilisateur/{{user._id}}" class="btn btn-danger">Supprimer</a>
 			</article>
 		{% endfor %}
 

@@ -82,18 +82,6 @@ userRouter.get('/modifierProfil', ifConnected, async (req, res) => {
 
 })
 
-
-//-----------------------------profil des autres utilisateurs
-userRouter.get('/profil/:id', ifConnected, async (req, res) => {
-    let inspectedUser = await User.findOne({_id: req.params.id})
-    console.log(inspectedUser);
-    res.render('./template/user/profil.html.twig', {
-        inspectedUser: inspectedUser,
-        user: req.session.user
-    })
-
-})
-
 userRouter.post('/modifierProfil', ifConnected, async (req, res) => {
     let update = await UserController.updateUser(req.session.user._id, req.body)
     if (!update.errors) {
