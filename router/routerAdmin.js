@@ -11,7 +11,6 @@ const adminRouter = Router()
 //-------------------------------------liste des utilisateurs
 adminRouter.get('/listeUtilisateurs', ifConnected, async (req, res) => {
     const users = await User.find()
-
     res.render('./template/admin/listUsers.html.twig', {
         users: users,
         user: req.session.user

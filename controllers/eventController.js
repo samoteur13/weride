@@ -104,7 +104,6 @@ export class EventController {
 
     static async anullingParticipation(idEvent, idUserEvent, idUser) {
         const userEvent = await User.findOne({ _id: idUserEvent })
-
         const indexEvent = userEvent.eventUser.findIndex(eventUser => eventUser._id == idEvent)
         let event = userEvent.eventUser[indexEvent]
         let indexRider;

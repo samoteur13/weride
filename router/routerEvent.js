@@ -38,21 +38,21 @@ eventRouter.post('/nouvelleEvenement', ifConnected, async (req, res) => {
 })
 
 //-------------------------------------UpdateEvent
-eventRouter.get('/modifierEvenement/:id', ifConnected, async (req, res) => {
-    let user = req.session.user
-    const index = user.eventUser.findIndex(eventUser => eventUser._id == req.params.id) // methode js qui permet de recuperer l'index de l'event que l'on veut
-    let event = user.eventUser[index]// recupere l'event que l'on veut grace à son index
-    if (user) {
+eventRouter.get('/modifierEvenement/:eventId/:userEventId', ifConnected, async (req, res) => {
+    let userEvent = await User.findOne({_id: req.params.userEventId})
+    const index = userEvent.eventUser.findIndex(eventUser => eventUser._id == req.params.eventId) // methode js qui permet de recuperer l'index de l'event que l'on veut
+    let event = userEvent.eventUser[index]// recupere l'event que l'on veut grace à son index
+    if (userEvent) {
         res.render('./template/event/updateEvent.html.twig', {
-            user: user,
+            user: userEvent,
             event: event
         })
     }
 })
 
-eventRouter.post('/modifierEvenement/:id', ifConnected, async (req, res) => {
-    const user = req.session.user
-    const eventModify = await EventController.updateEvent(user, req.params.id, req.body)
+eventRouter.post('/modifierEvenement/:eventId/:userEventId', ifConnected, async (req, res) => {
+    let userEvent = await User.findOne({_id: req.params.userEventId})
+    const eventModify = await EventController.updateEvent(userEvent, req.params.eventId, req.body)
     res.redirect('/profil')
 })
 
@@ -70,9 +70,9 @@ eventRouter.get('/evenement/:eventId/:userId', ifConnected, async (req, res) => 
 })
 
 //-------------------------------------deleteEvent
-eventRouter.get('/supprimerEvenement/:id', ifConnected, async (req, res) => {
+eventRouter.get('/supprimerEvenement/:eventId/:userEventId', ifConnected, async (req, res) => {
 
-    const deleteUser = await EventController.deleteEvent(req.session.user._id, req.params.id)
+    const deleteUser = await EventController.deleteEvent(req.params.userEventId, req.params.eventId)
     res.redirect('/profil')
 })
 

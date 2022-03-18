@@ -44,11 +44,17 @@
 			<p class="text-success m-0">Rider
 				{{event.riderJoin.length}}+</p>
 
-			{% if user.id == userEvent.id %}
-			<div class="d-flex justify-content-end">
-				<a href="/supprimerEvenement/{{event._id}}" class="btn btn-danger mx-2">Supprimer</a>
-				<a href="/modifierEvenement/{{event._id}}" class="btn btn-light border border-secondary rounded">Modifier</a>
-			</div>
+
+			{% if user.id == userEvent.id  %}
+				<div class="d-flex justify-content-end">
+					<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger mx-2">Supprimer</a>
+					<a href="/modifierEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light border border-secondary rounded">Modifier</a>
+				</div>
+			{% elseif user.status == 2 %}
+				<div class="d-flex justify-content-end">
+					<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger mx-2">Supprimer</a>
+					<a href="/modifierEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light border border-secondary rounded">Modifier</a>
+				</div>
 			{% endif %}
 		</article>
 
