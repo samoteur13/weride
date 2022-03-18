@@ -4,8 +4,6 @@
 		<section class="card col-6 mt-3 mb-3 bg-light container p-0">
 			<h2 class="card-title m-0 p-1">Actualité</h2>
 			<hr class="mt-0">
-
-
 			{% for userEvent in listUser %}
 
 				{% for event in userEvent.eventUser %}
@@ -20,22 +18,37 @@
 								</div>
 							</div>
 							<h5 class="card-text">{{event.title}}</h5>
-							<p class="text-success m-0">nombre de rider 7+</p>
+
+							<p class="text-success m-0">Rider
+								{{event.riderJoin.length}}+</p>
+
 
 						</div>
 						<div class="col-6">
 							<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d1456402.9825108857!2d3.921280050206282!3d44.524634635339055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x12c9bf4344da5333%3A0x40819a5fd970220!2sMarseille!3m2!1d43.296482!2d5.3697799999999996!4m5!1s0x47f4ea516ae88797%3A0x408ab2ae4bb21f0!2sLyon!3m2!1d45.764043!2d4.835659!5e0!3m2!1sfr!2sfr!4v1647353202440!5m2!1sfr!2sfr" width="100%" height="" style="border-radius:5;" allowfullscreen="" loading="lazy"></iframe>
-
 							<div class="d-flex justify-content-between">
 
-								<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-primary">Je participe</a>
 
+
+								{% set iParticipate = false %}
+								{% for idRider in event.riderJoin %}
+									{% if idRider == user._id %}
+										{% set iParticipate = true %}
+									{% endif %}
+								{% endfor %}
+
+								{% if event.riderJoin.length == 0 %}
+									<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
+								{% elseif iParticipate %}
+									<a href="/annulerParticipation/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-danger">Annuler la partipation</a>
+								{% else %}
+									<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
+								{% endif %}
 								<a href="/evenement/{{event._id}}" class="btn btn-light">En savoir plus</a>
 							</div>
 						</div>
 					</article>
 				{% endfor %}
-
 			{% endfor %}
 		</section>
 	</main>

@@ -2,6 +2,7 @@ import Event from "../models/modelEvent.js"
 import User from "../models/modelUser.js"
 
 export class EventController {
+    
     static async newEvent(event, user) {
 
         let objectError = {
@@ -58,22 +59,68 @@ export class EventController {
 
     }
 
-    static async eventJoin(idEvent, idUserEvent) {
-        const user = await User.findOne({ _id: idUserEvent }, { password: 0 }) //pour sauvegarder ensuite sur l'utilisateur
+    static async eventJoin(idEvent, idUserEvent, userId) {
+
         let objectError = {
             errors: []
         }
         let err = ""
 
-        const index = user.eventUser.findIndex(eventUser => eventUser._id == idEvent)
-        // methode js qui permet de recuperer l'index de l'event que l'on veut
-        let event = user.eventUser[index]// recupere l'event que l'on veut grace à son index
+        const userEvent = await User.findOne({ _id: idUserEvent }, { password: 0 })
 
-        await user.eventUser[index].riderJoin.push(idUserEvent)
+        const index = userEvent.eventUser.findIndex(eventUser => eventUser._id == idEvent)
+        let event = userEvent.eventUser[index]
 
-        await User.updateOne({ _id: user._id }, { eventUser: user.eventUser })
-        await user.save()
+        let iParticipate;
+
+        for (let i = 0; i < userEvent.eventUser[index].riderJoin.length; i++) {
+            if (userEvent.eventUser[index].riderJoin[i] == userId) {
+                console.log("Vous participez déjà a cette sortie")
+                iParticipate = true
+            }
+        }
+
+        if (userEvent.eventUser[index].riderJoin.length === 0) {
+
+            await userEvent.eventUser[index].riderJoin.push(userId)
+            await User.updateOne({ _id: userEvent._id }, { eventUser: userEvent.eventUser })
+            await userEvent.save()
+
+        } else if (iParticipate === true) {
+
+            err = "Vous participez déjà à cette sortie"
+            objectError.errors.push(err)
+            return objectError
+
+        } else {
+
+            await userEvent.eventUser[index].riderJoin.push(userId)
+            await User.updateOne({ _id: userEvent._id }, { eventUser: userEvent.eventUser })
+            await userEvent.save()
+
+        }
+
+    }
+
+    static async anullingParticipation(idEvent, idUserEvent, idUser) {
+        const userEvent = await User.findOne({ _id: idUserEvent })
+
+        const indexEvent = userEvent.eventUser.findIndex(eventUser => eventUser._id == idEvent)
+        let event = userEvent.eventUser[indexEvent]
+        let indexRider;
+
+        for (let i = 0; i < event.riderJoin.length; i++) {
+            if (event.riderJoin[i] === idUser) {
+                indexRider = i
+            }
+
+        }
+
+        userEvent.eventUser[indexEvent].riderJoin.splice(indexRider, 1) //supprimé l'élèment ciblé
+        await User.updateOne({ _id: userEvent._id }, { eventUser: userEvent.eventUser })
+        await userEvent.save() // pourquoi ceci ne suffit pas
 
     }
 
 }
+
