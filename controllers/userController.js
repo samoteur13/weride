@@ -11,6 +11,7 @@ export class UserController {
         }
 
         user.password = await cryptPassword(user.password) // le mot de passe devient crypté
+        user.status = 1
 
         const newUser = new User(user)
 

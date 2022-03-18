@@ -15,26 +15,18 @@
 	</header>
 {% else %}
 	<header class="border-bottom shadow">
-
 		<div class="d-flex justify-content-between">
-
-
 			<a href="/profil" class="col-3 d-flex align-items-center">
 				<img class="col-3 ms-3" src="http://localhost:8080/pictures/logo-weride.png" alt="logo_weride">
 			</a>
-
-			
 				<div class="col-6 d-flex justify-content-around align-items-center header">
 					<img class="col-2 p-1 rounded-circle" src="http://localhost:8080/pictures/ylies.jpg" alt="profil image">
-					
 					<div class="col-6 p-1 d-flex">
-
 						<div>
 							<h1>{{user.pseudo}}</h1>
-							<p class="text-white">Kawasaki Versys 650</p>
+							<p class="text-white">{{user.motoUser[0].brand}} {{user.motoUser[0].model}} {{user.motoUser[0].cylinder}}</p>
 						</div>
 					</div>
-
 					<div class="col-4 p-1 d-flex flex-column">
 						<button type="" class="p-0 mt-1 mb-1 btn btn-light">
 							<a href="/deconnexion" class="nav-link p-0">Deconnexion</a>
@@ -47,8 +39,6 @@
 						</button>
 					</div>
 				</div>
-
-
 			<div class="col-3"></div>
 		</div >
 		<ul class="col-6 nav nav-pills mx-auto d-flex align-items-center justify-content-around text-center">

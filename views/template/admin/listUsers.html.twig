@@ -1,0 +1,17 @@
+{% extends "../../main.html.twig" %}
+{% block main %}
+	<main>
+		{% for user in users %}
+			<article class="row col-6 mx-auto card-body border border-muted bg-light rounded m-2">
+				<div class="d-flex justify-content-start">
+				    <img class="col-2 me-2" src="./pictures/logo-weride.png" alt="profil image">
+					<h6 class="card-title">{{user.pseudo}}</h5>
+				</div>
+				<a href="/profil/{{user._id}}" class="btn btn-light">En savoir plus</a>
+			</article>
+		{% endfor %}
+
+
+        
+	</main>
+{% endblock %}

@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/userController.js';
 import ifConnected from '../customDependences/ifConnected.js';
+import User from '../models/modelUser.js';
 import Moto from '../models/modelMoto.js';
 
 
@@ -78,6 +79,18 @@ userRouter.get('/modifierProfil', ifConnected, async (req, res) => {
         user: req.session.user
     })
 
+
+})
+
+
+//-----------------------------profil des autres utilisateurs
+userRouter.get('/profil/:id', ifConnected, async (req, res) => {
+    let inspectedUser = await User.findOne({_id: req.params.id})
+    console.log(inspectedUser);
+    res.render('./template/user/profil.html.twig', {
+        inspectedUser: inspectedUser,
+        user: req.session.user
+    })
 
 })
 
