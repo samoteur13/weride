@@ -87,7 +87,7 @@ export class UserController {
         }
         if (req.files) {// si un fichier se trouve dans le corps de la requette
             const directory = `${FileUrl}/userImages/${req.session.user._id}`// je defini le repertoire 
-            await pictureManager.removePictureWthoutMimeType(directory, req.session.user._id)// j'efface l'image precedente
+           await pictureManager.removePictureWthoutMimeType(directory, req.session.user._id)// j'efface l'image precedente
            let ext = await pictureManager.addPicture(req.files.image, directory, req.session.user._id)// et j'ajoute la nouvelle
            modify.picture = ext
            

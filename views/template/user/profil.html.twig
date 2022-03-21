@@ -23,8 +23,11 @@
 				</button>
 			</div>
 			<hr class="m-0">
+			{% if inspectedUser.motoUser.length == 0 %}
+				<p class="mx-auto my-2 text-danger"> Hey l'ami, tu n'as pas de bécane !</p>
+			 {% endif %}
 			{% for moto in inspectedUser.motoUser %}
-				<article class="row card-body text-center border border-muted rounded m-2">
+					<article class="row card-body text-center border border-muted rounded m-2">
 					<h5 class="card-title">{{moto.brand}}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">{{moto.model}} {{moto.cylinder}}</h6>
 					<button type="button" class="mt-1 mb-1 p-0   btn btn-light">
@@ -39,9 +42,9 @@
 			<h2 class="card-title m-0 p-1">Contact <span class="text-danger">(en construction)<span></h2>
 			<hr class="m-0">
 			<article class="row card-body border border-muted rounded m-2">
-				<h6 class="card-title">06 62 31 22 79</h5>
-				<h6 class="card-subtitle mb-2 text-muted">email.test@test.fr</h5>
-				<h6 class="card-title">Marseille 9ème (13)</h5>
+				<h6 class="card-title text-center">06 62 31 22 79</h5>
+				<h6 class="card-subtitle mb-2 text-muted text-center">email.test@test.fr</h5>
+				<h6 class="card-title text-center">Marseille 9ème (13)</h5>
 			</article>
 		</section>
 
