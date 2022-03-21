@@ -56,10 +56,10 @@
 						<article class="row card-body d-flex justify-content-end border border-muted rounded m-2">
 							<div class="col-6 d-flex flex-column justify-content-between">
 								<div class=" d-flex  align-items-center">
-									<img class="col-2 me-2" src="./pictures/logo-weride.png" alt="profil image">
+									<img class="col-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.picture}}" class="card-img-top"/>
 									<div>
 										<h6 class="card-title">{{inspectedUser.pseudo}}</h5>
-										<p class="card-subtitle mb-2 text-muted">{% for moto in inspectedUser.motoUser %}{{moto.brand}} {{moto.model}} {{moto.cylinder}}{% endfor %}</p>
+										<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}} {{user.motoUser[0].model}} {{user.motoUser[0].cylinder}}</p>
 									</div>
 								</div>
 								<h5 class="card-text">{{event.title}}</h5>

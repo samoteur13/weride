@@ -5,10 +5,13 @@
 			<article class="row col-6 mx-auto card-body border border-muted bg-light rounded m-2">
 				<div class="d-flex justify-content-start">
 					<img class="col-2 me-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.picture}}" class="card-img-top" alt="photo_de_profil"/>
-					<h6 class="card-title">{{user.pseudo}}</h5>
+					<div>
+						<h6 class="card-title">{{user.pseudo}}</h5>
+						<p class="card-title  text-muted">{{user.motoUser[0].brand}} {{user.motoUser[0].model}} {{user.motoUser[0].cylinder}}</p>
+					</div>
 				</div>
-				<a href="/profil/{{user._id}}" class="btn btn-primary">En savoir plus</a>
-					<a href="/supprimerUtilisateur/{{user._id}}" class="btn btn-danger">Supprimer</a>
+					<a href="/supprimerUtilisateur/{{user._id}}" class="col-5 btn btn-danger mx-auto">Supprimer</a>
+					<a href="/profil/{{user._id}}" class="col-5 btn btn-primary mx-auto">En savoir plus</a>
 			</article>
 		{% endfor %}
 
