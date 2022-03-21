@@ -33,7 +33,7 @@ export class UserController {
         
         
         let image = await pictureManager.addPicture(req.files.image, directory, newUser._id); //j'ajoute une image dans le dossier specifié
-        newUser.image = image
+        newUser.picture = image
         newUser.save()
         return newUser
     }
@@ -67,8 +67,8 @@ export class UserController {
         return await User.findOne({_id: id}, excludeFields)
     }
 
-    static async updateUser(user, modify) {
-
+    static async updateUser(user, req) {
+        let modify = req.body
         let objectError = {
             errors: []
         }
@@ -79,13 +79,22 @@ export class UserController {
         let samePassword = await comparePassword(modify.oldPassword, password)
         modify.password = await cryptPassword(modify.password) // le mot de passe devient crypté
         if (samePassword) {
-            await User.updateOne({ _id: user }, modify)
-            return "" //pour ne pas returner une valeur vide et créer une erreur
+        
         } else {
             err = "votre ancien mot de passe n'est pas correct"
             objectError.errors.push(err)
             return objectError;
         }
+        if (req.files) {// si un fichier se trouve dans le corps de la requette
+            const directory = `${FileUrl}/userImages/${req.session.user._id}`// je defini le repertoire 
+            await pictureManager.removePictureWthoutMimeType(directory, req.session.user._id)// j'efface l'image precedente
+           let ext = await pictureManager.addPicture(req.files.image, directory, req.session.user._id)// et j'ajoute la nouvelle
+           modify.picture = ext
+           
+
+        }
+        await User.updateOne({ _id: user }, modify)
+        return user
 
     }
     

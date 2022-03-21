@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userShema = mongoose.Schema({
-    image: {
+    picture: {
         type:String
     },
     name: {

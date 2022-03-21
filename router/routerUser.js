@@ -83,7 +83,7 @@ userRouter.get('/modifierProfil', ifConnected, async (req, res) => {
 })
 
 userRouter.post('/modifierProfil', ifConnected, async (req, res) => {
-    let update = await UserController.updateUser(req.session.user._id, req.body)
+    let update = await UserController.updateUser(req.session.user._id, req)
     if (!update.errors) {
         res.redirect('/profil')
     } else {

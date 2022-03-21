@@ -4,7 +4,7 @@
 		{% for user in users %}
 			<article class="row col-6 mx-auto card-body border border-muted bg-light rounded m-2">
 				<div class="d-flex justify-content-start">
-					<img class="col-2 me-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.image}}" class="card-img-top" alt="photo_de_profil"/>
+					<img class="col-2 me-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.picture}}" class="card-img-top" alt="photo_de_profil"/>
 					<h6 class="card-title">{{user.pseudo}}</h5>
 				</div>
 				<a href="/profil/{{user._id}}" class="btn btn-primary">En savoir plus</a>

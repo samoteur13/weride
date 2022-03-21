@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="row ">
 
-				<form class="col-md-6 mx-auto p-3 my-5 bg-light rounded" method="post" action="modifierProfil">
+				<form class="col-md-6 mx-auto p-3 my-5 bg-light rounded" enctype="multipart/form-data" method="post" action="modifierProfil">
 					<h1 class="text-primary">Modifier le Profil</h1>
 					<hr class="m-0">
 					{% for err in errors %}
@@ -14,23 +14,27 @@
 					{% endfor %}
 
 					<div>
-						<label class="my-3" for="name">Prénom :</label>
+						<label class="my-3" for="name">Prénom</label>
 						<input type="text" class="form-control" id="name" name="name" placeholder="Entrer votre prénom" value="{{user.name}}">
 					</div>
 					<div>
-						<label for="firstName">Nom :</label>
+						<label for="firstName">Nom</label>
 						<input type="text" class="form-control" id="firstName" name="firstName" placeholder="Entrer votre nom" value="{{user.firstName}}">
 					</div>
 					<div>
-						<label for="firstName">Pseudo :</label>
+						<label for="firstName">Pseudo</label>
 						<input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" value="{{user.pseudo}}">
 					</div>
 					<div>
-						<label for="firstName">Ancien mot de passe :</label>
+					<label class="my-3" for="image">Photo</label>
+					<input type="file" class="form-control" id="image" name="image">
+				</div>
+					<div>
+						<label for="firstName">Ancien mot de passe</label>
 						<input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Entrer votre ancien mot de passe" value="">
 					</div>
 					<div>
-						<label for="firstName">Nouveaux mot de passe :</label>
+						<label for="firstName">Nouveaux mot de passe</label>
 						<input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe" value="">
 					</div>
 					<button type="submit" class="btn btn-primary mt-2">modifier</button>
