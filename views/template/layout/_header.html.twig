@@ -16,10 +16,10 @@
 {% else %}
 	<header class="border-bottom shadow">
 		<div class="d-flex justify-content-between">
-			<a href="/profil" class="col-3 d-flex align-items-center">
-				<img class="col-3 ms-3" src="http://localhost:8080/pictures/logo-weride.png" alt="logo_weride">
+			<a href="/profil" class="col-3 my-auto d-none d-md-block d-flex align-items-center">
+				<img class="col-3 px-3" src="http://localhost:8080/pictures/logo-weride.png" alt="logo_weride">
 			</a>
-				<div class="col-6 d-flex justify-content-around align-items-center header">
+				<div class="col-12 col-md-6 col-lg-6 d-flex justify-content-around align-items-center header">
 				<img class="col-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.picture}}" class="card-img-top"/>
 					<div class="col-6 p-1 d-flex">
 						<div>
@@ -39,9 +39,10 @@
 						</button>
 					</div>
 				</div>
-			<div class="col-3"></div>
+			<div class="col-3 d-none d-md-block"></div>
 		</div >
-		<ul class="col-6 nav nav-pills mx-auto d-flex align-items-center justify-content-around text-center">
+		{# navbar #}
+		<ul class="col-12 col-md-6 col-lg-6 nav nav-pills mx-auto d-flex align-items-center justify-content-around text-center">
 			<li class="col-3 nav-item text-center {% if route == 'profil'  %} border-3 border-primary border-bottom {% endif %}">
 				<a href="/profil" class="text-decoration-none {% if route == 'profil'  %} text-primary {% else %} text-secondary {% endif %} " aria-current="page">Profil</a>
 			</li>

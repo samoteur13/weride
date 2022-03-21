@@ -7,15 +7,16 @@
 
 	<main class="">
 
-	{# section profil #}
-		<section class="card col-6 mt-3 container p-0 d-flex align-items-center">
+		{# section profil #}
+		<section class="card col-12 col-md-6 col-lg-6 mt-3 container p-0 d-flex align-items-center">
 			<img class="col-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.picture}}" class="card-img-top"/>
 			<h6 class="card-title">{{inspectedUser.pseudo}}</h5>
 			<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}} {{user.motoUser[0].model}} {{user.motoUser[0].cylinder}}</p>
 			
 		</section>
+
 		{# section moto #}
-		<section class="card col-6 mt-3 container p-0">
+		<section class="card col-12 col-md-6 col-lg-6 mt-3 container p-0">
 			<div class="d-flex justify-content-between">
 				<h2 class="card-title m-0 p-1">Moto</h2>
 				<button type="button" class="m-1 p-0 btn btn-light">
@@ -38,7 +39,7 @@
 		</section>
 
 		{# section contact #}
-		<section class="card col-6 mt-3 bg-light container p-0">
+		<section class="card col-12 col-md-6 col-lg-6 mt-3 bg-light container p-0">
 			<h2 class="card-title m-0 p-1">Contact <span class="text-danger">(en construction)<span></h2>
 			<hr class="m-0">
 			<article class="row card-body border border-muted rounded m-2">
@@ -48,8 +49,8 @@
 			</article>
 		</section>
 
-				{# section mes sortie #}
-		<section class="card col-6 mt-3 bg-light container p-0">
+		{# section mes sortie #}
+		<section class="card col-12 col-md-6 col-lg-6 mt-3 bg-light container p-0">
 			<h2 class="card-title m-0 p-1">Mes sorties</h2>
 			<hr class="m-0">
 			{% for event in inspectedUser.eventUser %}
@@ -76,7 +77,7 @@
 		</section>
 
 		{# section je participe #}
-		<section class="card col-6 mt-3 bg-light container p-0">
+		<section class="card col-12 col-md-6 col-lg-6 mt-3 bg-light container p-0">
 				<h2 class="card-title m-0 p-1">Je participe <span class="text-danger">(en construction)<span></h2>
 				<hr class="m-0">
 			<article class="row card-body border border-muted rounded m-2">
@@ -85,7 +86,7 @@
 		</section>
 
 		{# Page photos #}
-		<section class="card col-6 mt-3 bg-light mb-3 container p-0">
+		<section class="card col-12 col-md-6 col-lg-6 mt-3 bg-light mb-3 container p-0">
 			<h2 class="card-title m-0 p-1">Mes photos <span class="text-danger">(en construction)<span></h2>
 			<hr class="m-0">
 			<article class="row ">
