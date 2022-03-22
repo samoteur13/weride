@@ -10,7 +10,7 @@
 		{# section profil #}
 		<section class="card col-12 col-md-6 col-lg-6 mt-3 container p-0 d-flex align-items-center">
 			{% if not inspectedUser.picture %}
-				<img class="col-2 p-1 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/>
+				<img class="col-2 p-1 rounded-circle" src="/pictures/default.jpg" class="card-img-top"/>
 			{% else %}
 				<img class="col-2 p-1 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" class="card-img-top"/>
 			{% endif %}
@@ -31,7 +31,7 @@
 			</div>
 			<hr class="m-0">
 			{% if inspectedUser.motoUser.length == 0 %}
-				<p class="mx-auto my-2 text-danger">Hey l'ami, tu n'as pas de bécane !</p>
+				<p class="mx-auto my-2 text-danger"> Hey l'ami, tu n'as pas de bécane !</p>
 			{% endif %}
 			{% for moto in inspectedUser.motoUser %}
 				<article class="row card-body text-center border border-muted rounded m-2">
