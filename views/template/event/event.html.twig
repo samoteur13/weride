@@ -8,14 +8,16 @@
 
 			<div class=" d-flex mb-3 align-items-center">
 				{% if not userEvent.picture %}
-									<img class="col-2 p-1 rounded-circle" src="/pictures/default.jpg" class="card-img-top"/>
-								{% else %}
-									<img class="col-2 p-1 rounded-circle" src="/images/userImages/{{userEvent.id}}/{{userEvent.picture}}" class="card-img-top"/>
-								{% endif %}
+					<img class="col-2 p-1 rounded-circle" src="/pictures/default.jpg" class="card-img-top"/>
+				{% else %}
+					<img class="col-2 p-1 rounded-circle" src="/images/userImages/{{userEvent.id}}/{{userEvent.picture}}" class="card-img-top"/>
+				{% endif %}
 				<div>
 					<h6 class="card-title">{{userEvent.pseudo}}</h5>
 
-					<p class="card-subtitle mb-2 text-muted">{{userEvent.motoUser[0].brand}} {{userEvent.motoUser[0].model}} {{userEvent.motoUser[0].cylinder}}</p>
+					<p class="card-subtitle mb-2 text-muted">{{userEvent.motoUser[0].brand}}
+						{{userEvent.motoUser[0].model}}
+						{{userEvent.motoUser[0].cylinder}}</p>
 				</div>
 			</div>
 			<div class="d-flex justify-content-between">
