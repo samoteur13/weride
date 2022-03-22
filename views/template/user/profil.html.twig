@@ -9,7 +9,13 @@
 
 		{# section profil #}
 		<section class="card col-12 col-md-6 col-lg-6 mt-3 container p-0 d-flex align-items-center">
-			<img class="col-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.picture}}" class="card-img-top"/>
+			
+			{% if not user.picture %} 
+				<img class="col-2 p-1 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/>
+			{% else %}
+				<img class="col-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.picture}}" class="card-img-top"/>
+			{% endif %}
+			
 			<h6 class="card-title">{{inspectedUser.pseudo}}</h5>
 			<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}} {{user.motoUser[0].model}} {{user.motoUser[0].cylinder}}</p>
 			
@@ -36,17 +42,6 @@
 					</button>
 				</article>
 			{% endfor %}
-		</section>
-
-		{# section contact #}
-		<section class="card col-12 col-md-6 col-lg-6 mt-3 bg-light container p-0">
-			<h2 class="card-title m-0 p-1">Contact <span class="text-danger">(en construction)<span></h2>
-			<hr class="m-0">
-			<article class="row card-body border border-muted rounded m-2">
-				<h6 class="card-title text-center">06 62 31 22 79</h5>
-				<h6 class="card-subtitle mb-2 text-muted text-center">email.test@test.fr</h5>
-				<h6 class="card-title text-center">Marseille 9ème (13)</h5>
-			</article>
 		</section>
 
 		{# section mes sortie #}
