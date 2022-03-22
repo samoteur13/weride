@@ -4,6 +4,10 @@ export class pictureManager {
 
   static async removePictureWthoutMimeType(directory, name) { //supprime un fichier sans connaitre son extension
      fs.readdirSync(directory, (err, files) => {
+       if(err){
+         console.log(err);
+         return ''
+       }
       files.forEach((file) => {
         if (file.split('.')[0] == name){
              fs.unlinkSync(directory +'/' + file);
@@ -25,7 +29,6 @@ export class pictureManager {
         console.log(err);
       }
     });
-    console.log(`${name}.${extension}`);
     return `${name}.${extension}`
   }
 
