@@ -114,24 +114,27 @@ export class UserController {
         for (let i = 0; i < listUsers.length; i++) {
 
             let userEvent = {
-                userId: listUsers[i].id,
-                eventId: []
+                userEvent: listUsers[i],
+                eventUser: []
             }
+
             for (let j = 0; j < listUsers[i].eventUser.length; j++) {
 
 
                 for (let k = 0; k < listUsers[i].eventUser[j].riderJoin.length; k++) {
                     if (listUsers[i].eventUser[j].riderJoin[k] === user.id) {
-                        userEvent.eventId.push(listUsers[i].eventUser[j]._id.toString()) // convertie les objet id en string
+                        listUsers[i].eventUser[j].id = listUsers[i].eventUser[j]._id.toString() //créer une nouvelle clef puis la parse
+                        userEvent.eventUser.push(listUsers[i].eventUser[j]) // convertie les objet id en string
                     }
 
                 }
 
             }
+            listUsers[i].id = listUsers[i]._id.toString() //créer une nouvelle clef puis la parse
             users.push(userEvent)
             for (let i = 0; i < users.length; i++) {
 
-                if (users[i].eventId.length === 0) {
+                if (users[i].eventUser.length === 0) {
                     users.splice(i, 1)
                 }
             }

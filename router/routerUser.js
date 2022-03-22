@@ -65,12 +65,8 @@ userRouter.get('/deconnexion', (req, res) => {
 //-------------------------------------profil
 userRouter.get('/profil', ifConnected, async (req, res) => {
     const eventJoined = await UserController.eventJoined(req.session.user)
-    const listUsers = await User.find({ _id: { $ne: req.session.user._id } }) //permet de retiré un élément $ne === ! 
-    console.log(eventJoined);
-
     res.render('./template/user/profil.html.twig', {
         user: req.session.user,
-        listUsers: listUsers,
         eventJoined: eventJoined,
         route: 'profil'
     })
