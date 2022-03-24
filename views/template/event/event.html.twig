@@ -47,10 +47,29 @@
 
 			<p class="card-text text-success my-1">Description</p>
 			<p class="card-text text-secondary my-3">{{event.description}}</p>
-			<p class="text-success m-0">Rider
+			<p class="text-success mb-2">Rider
 				{{event.riderJoin.length}}+</p>
 
+			{% if user.id != userEvent.id %}
+			
+			{# Verifie si l'utilisateur participe à la sortie ou non #}
+			{% set iParticipate = false %}
+			{% for idRider in event.riderJoin %}
+				{% if idRider == user._id %}
+					{% set iParticipate = true %}
+				{% endif %}
+			{% endfor %}
 
+			{% if event.riderJoin.length == 0 %}
+				<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
+			{% elseif iParticipate %}
+				<a href="/annulerParticipation/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-danger">Annuler la partipation</a>
+			{% else %}
+				<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
+			{% endif %}
+
+			{% endif %}
+			
 			{% if user.id == userEvent.id  %}
 				<div class="d-flex justify-content-end">
 					<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger mx-2">Supprimer</a>
