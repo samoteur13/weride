@@ -79,13 +79,13 @@ eventRouter.get('/supprimerEvenement/:eventId/:userEventId', ifConnected, async 
 //-------------------------------------joinEvent
 eventRouter.get('/rejoindreEvenement/:idEvent/:idUserEvent/:idUser', ifConnected, async (req, res) => {
     const eventJoin = await EventController.eventJoin(req.params.idEvent, req.params.idUserEvent, req.params.idUser)
-    res.redirect('/listeEvenement')
+    res.redirect(req.get('referer')+'#'+ req.params.idEvent); // (referer) page d 'ou l'on vient
 })
 
 //-------------------------------------anullingParticipation
 eventRouter.get('/annulerParticipation/:idEvent/:idUserEvent/:idUser', ifConnected, async (req, res) => {
     const eventJoin = await EventController.anullingParticipation(req.params.idEvent, req.params.idUserEvent,req.params.idUser )
-    res.redirect('/listeEvenement')
+    res.redirect(req.get('referer') + '#' + req.params.idEvent);   
 })
 
 

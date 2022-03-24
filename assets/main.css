@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: unset !important;
+}
+
 .header {
     background-color:#3ECF67;
 }
