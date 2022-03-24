@@ -8,8 +8,10 @@ html{
 
 main {
     background: url('./pictures/bg.webp') !important;
-    background-size: cover ;
-     background-repeat: no-repeat;
+    background-size: cover !important;
+    position: top !important;
+    background-attachment: fixed !important;
+     background-repeat: no-repeat !important;
 }
 
 
