@@ -6,8 +6,8 @@ export class EventController {
     static async newEvent(event, user) {
 
         let objectError = {
-            errors: []
-        }
+            "error": true
+          }
 
         const newEvent = new Event(event)
 
@@ -15,13 +15,14 @@ export class EventController {
         let err = await newEvent.validateSync()
         if (err) {
             for (let i = 0; i < Object.values(err.errors).length; i++) {
-                objectError.errors.push(Object.values(err.errors)[i].message);
+                let path = Object.values(err.errors)[i].path //nom du champs en erreur
+                objectError[path] = Object.values(err.errors)[i].message // insere l'erreur dans l'objet "objectError"
             }
             return objectError;
         } else {
             await user.eventUser.push(newEvent)
             await user.save()
-            return ""
+            return newEvent
         }
 
     }
