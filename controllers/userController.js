@@ -25,7 +25,6 @@ export class UserController {
         //---------------------------- permet de récupérer les erreurs
         let err = await newUser.validateSync()
         if (err) {
-           
             for (let i = 0; i < Object.values(err.errors).length; i++) {
                 let path = Object.values(err.errors)[i].path //nom du champs en erreur
                 objectError[path] = Object.values(err.errors)[i].message // insere l'erreur dans l'objet "objectError"
@@ -87,7 +86,7 @@ export class UserController {
         if (samePassword) {
 
         } else {
-            err = "votre ancien mot de passe n'est pas correct"
+            err = "Votre ancien mot de passe incorrect"
             objectError.errors.push(err)
             return objectError;
         }

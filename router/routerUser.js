@@ -77,13 +77,9 @@ userRouter.get('/profil', ifConnected, async (req, res) => {
 
 //-------------------------------------updateprofil
 userRouter.get('/modifierProfil', ifConnected, async (req, res) => {
-
-
     res.render('./template/user/updateProfil.html.twig', {
         user: req.session.user
     })
-
-
 })
 
 userRouter.post('/modifierProfil', ifConnected, async (req, res) => {
@@ -93,7 +89,8 @@ userRouter.post('/modifierProfil', ifConnected, async (req, res) => {
     } else {
         res.render('./template/user/updateProfil.html.twig', {
             user: req.session.user,
-            errors: update.errors
+            errors: update.errors,
+            user:req.body
         })
     }
 })

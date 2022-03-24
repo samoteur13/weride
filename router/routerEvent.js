@@ -27,10 +27,11 @@ eventRouter.get('/nouvelleEvenement', ifConnected, async (req, res) => {
 
 eventRouter.post('/nouvelleEvenement', ifConnected, async (req, res) => {
     const newEvent = await EventController.newEvent(req.body, req.session.user)
-    if (newEvent.errors) {
+    if (newEvent.error) {
         res.render('./template/event/newEvent.html.twig', {
-            errors: newEvent.errors,
-            user: req.session.user
+            errors: newEvent,
+            user: req.session.user,
+            event: req.body
         })
     } else {
         res.redirect('/profil')
