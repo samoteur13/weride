@@ -45,7 +45,8 @@ eventRouter.get('/modifierEvenement/:eventId/:userEventId', ifConnected, async (
     let event = userEvent.eventUser[index]// recupere l'event que l'on veut grace à son index
     if (userEvent) {
         res.render('./template/event/updateEvent.html.twig', {
-            user: userEvent,
+            user: req.session.user,
+            userEvent: userEvent,
             event: event
         })
     }
