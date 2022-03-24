@@ -21,7 +21,7 @@
 							</div>
 						    <h5 style="color:#2b3658;" class=" m-0">{{event.departureLocation}}</h5>
 							<h5 style="color:#2b3658;" class=" m-0">{{event.backLocation}}</h5>
-							<p class="m-0 text-secondary">&#x1F552; Du {{event.startDate}} au {{event.endDate}}</p>
+							<p class="m-0 text-secondary">&#x1F552; Du {{event.startDate|date("d/m/Y")}} au {{event.endDate|date("d/m/Y")}}</p> <!-- pour configurer le format de la date -->
 							<p class="text-success m-0">Rider {{event.riderJoin.length}}+</p>
 						</div>
 						<div class="col-6">
