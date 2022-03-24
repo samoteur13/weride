@@ -55,7 +55,18 @@ eventRouter.get('/modifierEvenement/:eventId/:userEventId', ifConnected, async (
 eventRouter.post('/modifierEvenement/:eventId/:userEventId', ifConnected, async (req, res) => {
     let userEvent = await User.findOne({_id: req.params.userEventId})
     const eventModify = await EventController.updateEvent(userEvent, req.params.eventId, req.body)
-    res.redirect('/profil')
+    if(eventModify && eventModify.error){
+        const index = userEvent.eventUser.findIndex(eventUser => eventUser._id == req.params.eventId) // methode js qui permet de recuperer l'index de l'event que l'on veut
+        let event = userEvent.eventUser[index]// recupere l'event que l'on veut grace à son index
+        res.render('./template/event/updateEvent.html.twig', {
+            errors: eventModify,
+            user: req.session.user,
+            userEvent: userEvent,
+            event: event
+        })
+    }else{
+        res.redirect('/profil')
+    }
 })
 
 //-------------------------------------Event
