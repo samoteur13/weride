@@ -10,11 +10,11 @@
 		{# section profil #}
 		<section class="card col-12 col-md-6 col-lg-6 mt-3 container p-0 d-flex align-items-center">
 			{% if not inspectedUser.picture %}
-				<img class="col-2 p-1 rounded-circle" src="/pictures/default.jpg" class="card-img-top"/>
+				<img class="col-2 p-1 rounded-circle" src="/pictures/default.webp" alt="image profil par défault" class="card-img-top"/>
 			{% else %}
 				<img class="col-2 p-1 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil utilisateur" class="card-img-top"/>
 			{% endif %}
-			<h6 class="card-title">{{inspectedUser.pseudo}}</h5>
+			<p class="card-title h5">{{inspectedUser.pseudo}}</p>
 			<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}}
 				{{user.motoUser[0].model}}
 				{{user.motoUser[0].cylinder}}</p>
@@ -59,7 +59,7 @@
 						<div class=" d-flex  align-items-center">
 							<img class="col-2 p-1 rounded-circle" src="./images/userImages/{{user.id}}/{{user.picture}}" alt="image de profil utilisateur" class="card-img-top"/>
 							<div>
-								<h6 class="card-title">{{inspectedUser.pseudo}}</h5>
+								<h6 class="card-title">{{inspectedUser.pseudo}}</h6>
 								<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}} {{user.motoUser[0].model}} {{user.motoUser[0].cylinder}}</p>
 							</div>
 						</div>
@@ -130,7 +130,7 @@
 
 		{# Page photos #}
 		<section class="card col-12 col-md-6 col-lg-6 mt-3 bg-light mb-3 container p-0">
-			<h2 class="card-title m-0 p-1">Mes photos <span class="text-danger">(en construction)<span></h2>
+			<h2 class="card-title m-0 p-1">Mes photos <span class="text-danger">(en construction)</span></h2>
 					<hr class="m-0">
 					<article class="row ">
 						<img class="col-4 " src="/pictures/motard.jpg" alt="image de moto">

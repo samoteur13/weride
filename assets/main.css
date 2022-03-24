@@ -7,7 +7,7 @@ html{
 }
 
 main {
-    background: url('./pictures/bg.png') !important;
+    background: url('./pictures/bg.webp') !important;
     background-size: cover ;
      background-repeat: no-repeat;
 }
