@@ -40,6 +40,8 @@ export class EventController {
     }
 
     static async updateEvent(user, userId, form) {
+
+        
         for (let i = 0; i < user.eventUser.length; i++) {
             if (user.eventUser[i]._id == userId) {
                 user.eventUser[i].startDate = form.startDate;
