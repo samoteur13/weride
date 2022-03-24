@@ -4,39 +4,39 @@ import mongoose from "mongoose";
 const eventShema = mongoose.Schema({
     title: {
         type: String,
-        required: [true, "Saisir un titre"]
+        required: [true, "Veuillez saisir un titre"]
     },
     startDate: {
         type: String,
-        required: [true, "Saisir une date départ"]
+        required: [true, "Veuillez saisir une date départ"]
     },
     hour: {
         type: String,
-        required: [true, "Saisir une heure de départ"]
+        required: [true, "Veuillez saisir une heure de départ"]
     },
     endDate: {
         type: String,
-        required: [true, "Saisir une date de retour"]
+        required: [true, "Veuillez saisir une date de retour"]
     },
     departureLocation: {
         type: String,
-        required: [true, "Saisir un lieu de départ"]
+        required: [true, "Veuillez saisir un lieu de départ"]
     },
     backLocation: {
         type: String,
-        required: [true, "Saisir un lieu de retour"]
+        required: [true, "Veuillez saisir un lieu de retour"]
     },
     step: {
         type: String,
-        required: [true, "Saisir au moins une étape"]
+        required: [true, "Veuillez saisir au moins une étape"]
     },
     type: {
         type: String,
-        required: [true, "Choisissez le type de balade"]
+        required: [true, "Veuillez choisir le type de balade"]
     },
     description: {
         type: String,
-        required: [true, "Une petite description !!"]
+        required: [true, "Veuillez saisir une description"]
     },
     riderJoin:  Array
 
