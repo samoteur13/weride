@@ -21,7 +21,7 @@ export class UserController {
         user.status = 1
 
         const newUser = new User(user)
-        const directory = `${FileUrl}/userImages/${newUser._id}` // chemin qui correspond au dossier de l'image du pokemon
+        const directory = `${FileUrl}/userImages/${newUser._id}` // chemin qui correspond au dossier de l'image du rider
         //---------------------------- permet de récupérer les erreurs
         let err = await newUser.validateSync()
         if (err) {

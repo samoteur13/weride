@@ -7,3 +7,11 @@ main {
     background-size: cover ;
      background-repeat: no-repeat;
 }
+
+
+/*----------------------------change la première lettre en majuscule -------------------------- */
+h5:first-letter{
+    text-transform: capitalize
+}
+
+
