@@ -63,28 +63,27 @@
 					{% set iParticipate = true %}
 				{% endif %}
 			{% endfor %}
-
+			<div class="d-flex justify-content-end">
 			{% if event.riderJoin.length == 0 %}
-				<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
+				<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary col-4">Je participe</a>
 			{% elseif iParticipate %}
-				<a href="/annulerParticipation/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Ne plus participer</a>
+				<a href="/annulerParticipation/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary col-4">Ne plus participer</a>
 			{% else %}
-				<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
+				<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}" class="btn btn-primary col-4">Je participe</a>
 			{% endif %}
+			</div>
 
 			{% endif %}
 			
-			{% if user.id == userEvent.id  %}
-				<div class="d-flex justify-content-end">
-					<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger mx-2">Supprimer</a>
-					<a href="/modifierEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light border border-secondary rounded">Modifier</a>
+				<div class="d-flex flex-column align-items-end">
+				{% if user.id == userEvent.id  %}
+					<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger col-4 my-2">Supprimer</a>
+					<a href="/modifierEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light border col-4 border-secondary rounded">Modifier</a>
+				{% elseif user.status == 2 %}
+					<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger col-4 my-2">Supprimer</a>
+					<a href="/modifierEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light border col-4 border-secondary rounded">Modifier</a>
+				{% endif %}
 				</div>
-			{% elseif user.status == 2 %}
-				<div class="d-flex justify-content-end">
-					<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger mx-2">Supprimer</a>
-					<a href="/modifierEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light border border-secondary rounded">Modifier</a>
-				</div>
-			{% endif %}
 		</article>
 
 	</main>
