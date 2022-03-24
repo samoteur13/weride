@@ -25,8 +25,10 @@ userRouter.get('/inscription', async (req, res) => {
 userRouter.post('/inscription', async (req, res) => {
     let user = await UserController.subscribe(req)
     if (user && !user.error) {
-        res.redirect('/connexion')
+        req.session.user = user
+        res.redirect('/profil')
     } else {
+        console.log(req.body.password);
         res.render('./template/authentification/registration.html.twig', {
             errors: user,
             user:req.body,
