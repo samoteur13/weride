@@ -5,21 +5,21 @@
 			<form class="col-md-6 mx-auto p-3 my-5 bg-light rounded" enctype="multipart/form-data" method="post" action="inscription">
 				<h1 class="text-primary">Inscription</h1>
 			<hr class="m-0">
-				{% for err in errors %}
-					<p class="text-danger">{{err}}</p>
-				{% endfor %}
 				
 				<div>
 					<label class="my-3" for="name">Prénom</label>
 					<input type="text" class="form-control" id="name" name="name" placeholder="Entrer votre prénom" value="{{user.name}}">
+						<p class="text-danger">{{errors.name}}</p>
 				</div>
 				<div>
 					<label class="my-3" for="firstName">Nom</label>
 					<input type="text" class="form-control" id="firstName" name="firstName" placeholder="Entrer votre nom" value="{{user.firstName}}">
+					<p class="text-danger">{{errors.firstName}}</p>
 				</div>
 				<div>
 					<label class="my-3" for="firstName">Pseudo</label>
 					<input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" value="{{user.pseudo}}">
+					<p class="text-danger">{{errors.pseudo}}</p>
 				</div>
 				<div>
 					<label class="my-3" for="image">Photo</label>
@@ -28,6 +28,7 @@
 				<div>
 					<label class="my-3" for="firstName">Email</label>
 					<input type="mail" class="form-control" id="mail" name="mail" placeholder="Entrer votre email" value="{{user.mail}}">
+					<p class="text-danger">{{errors[3]}}</p>
 				</div>
 				<div>
 					<label class="my-3" for="firstName">Mot de passe</label>

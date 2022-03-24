@@ -14,7 +14,7 @@ export class UserController {
     static async subscribe(req) {
         let user = req.body
         let objectError = {
-            errors: []
+          "error": true
         }
 
         user.password = await cryptPassword(user.password) // le mot de passe devient crypté
@@ -25,8 +25,10 @@ export class UserController {
         //---------------------------- permet de récupérer les erreurs
         let err = await newUser.validateSync()
         if (err) {
+           
             for (let i = 0; i < Object.values(err.errors).length; i++) {
-                objectError.errors.push(Object.values(err.errors)[i].message);
+                let path = Object.values(err.errors)[i].path //nom du champs en erreur
+                objectError[path] = Object.values(err.errors)[i].message // insere l'erreur dans l'objet "objectError"
             }
             return objectError;
         }
@@ -56,12 +58,12 @@ export class UserController {
             if (samePassword) {
                 return user
             } else {
-                err = "le mot de passe n'est pas correct"
+                err = "Le mot de passe n'est pas correct"
                 objectError.errors.push(err)
                 return objectError;
             }
         } else {
-            err = "vous n'êtes pas inscrit"
+            err = "Vous n'êtes pas inscrit"
             objectError.errors.push(err)
             return objectError;
         }

@@ -18,17 +18,19 @@ userRouter.get('/', async (req, res) => {
 //-------------------------------------inscription
 userRouter.get('/inscription', async (req, res) => {
     res.render('./template/authentification/registration.html.twig', {
-        disconnect: true
+        disconnect: true,
     })
 })
 
 userRouter.post('/inscription', async (req, res) => {
     let user = await UserController.subscribe(req)
-    if (user && !user.errors) {
+    if (user && !user.error) {
         res.redirect('/connexion')
     } else {
         res.render('./template/authentification/registration.html.twig', {
-            errors: user.errors
+            errors: user,
+            user:req.body,
+            disconnect: true
         })
     }
 })
