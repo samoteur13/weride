@@ -42,11 +42,11 @@
 								{% if event.riderJoin.length == 0 %}
 									<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}"   class="btn btn-primary">Je participe</a>
 								{% elseif iParticipate %}
-									<a href="/annulerParticipation/{{event._id}}/{{userEvent._id}}/{{user._id}}"  class="btn btn-danger">Annuler la partipation</a>
+									<a href="/annulerParticipation/{{event._id}}/{{userEvent._id}}/{{user._id}}"  class="btn btn-danger">Annuler</a>
 								{% else %}
 									<a href="/rejoindreEvenement/{{event._id}}/{{userEvent._id}}/{{user._id}}"  class="btn btn-primary">Je participe</a>
 								{% endif %}
-								<a href="/evenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light">En savoir plus</a>
+								<a href="/evenement/{{event._id}}/{{userEvent._id}}" class="btn btn-light">Détails</a>
 							</div>
 						</div>
 					</article>

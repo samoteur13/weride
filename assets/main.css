@@ -14,7 +14,7 @@ main {
 
 
 /*----------------------------change la première lettre en majuscule -------------------------- */
-h5:first-letter{
+h1 , h6 , h5:first-letter{
     text-transform: capitalize
 }
 
