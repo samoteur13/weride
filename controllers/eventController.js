@@ -45,11 +45,11 @@ export class EventController {
             "error": true
         }
         const newEvent = new Event(form)
-        let err = await newEvent.validateSync()
+        let err = await newEvent.validateSync()// verifie les erreures
         if (err) {
             for (let i = 0; i < Object.values(err.errors).length; i++) {
                 let path = Object.values(err.errors)[i].path //nom du champs en erreur
-                objectError[path] = Object.values(err.errors)[i].message // insere l'erreur dans l'objet "objectError"
+                objectError[path] = Object.values(err.errors)[i].message // insere l'erreur dans l'objet "objectError" [path == nom du champ]
             }
             return objectError;
         } else {

@@ -6,22 +6,22 @@
 		<div class="container">
 			<div class="row ">
 				<form class="col-md-6 mx-auto p-3 my-5 bg-light rounded" method="post" action="nouvelleEvenement">
-					<h3 class="text-primary">Organises une sortie</h1>
+					<h2 class="text-primary">Organises une sortie</h2>
 					<hr class="m-0">
 				
 					<div class="mt-2">
 						<label for="startDate">Date de départ</label>
-						<input type="date" class="form-control" id="startDate" name="startDate" placeholder="" value="{{event.startDate}}">
+						<input type="date" class="form-control" id="startDate" name="startDate" value="{{event.startDate}}">
 						<p class="text-danger">{{errors.startDate}}</p>
 					</div>
 					<div class="mt-2">
 						<label for="hour">Heure de départ</label>
-						<input type="time" class="form-control" id="hour" name="hour" placeholder="" value="{{event.hour}}">
+						<input type="time" class="form-control" id="hour" name="hour"  value="{{event.hour}}">
 						<p class="text-danger">{{errors.hour}}</p>
 					</div>
 					<div class="mt-2">
-						<label for="endDAte">Date de retour</label>
-						<input type="date" class="form-control" id="endDate" name="endDate" placeholder="" value="{{event.endDate}}">
+						<label for="endDate">Date de retour</label>
+						<input type="date" class="form-control" id="endDate" name="endDate"  value="{{event.endDate}}">
 						<p class="text-danger">{{errors.endDate}}</p>
 					</div>
 					<div class="mt-2">
@@ -31,7 +31,7 @@
 					</div>
 					<div class="mt-2">
 						<label for="backLocation">Lieu de retour</label>
-						<input type="mail" class="form-control" id="backLocation" name="backLocation" placeholder="Votre retour" value="{{event.backLocation}}">
+						<input type="email" class="form-control" id="backLocation" name="backLocation" placeholder="Votre retour" value="{{event.backLocation}}">
 						<p class="text-danger">{{errors.backLocation}}</p>
 					</div>
 					<div class="mt-2">
