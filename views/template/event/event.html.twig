@@ -8,13 +8,12 @@
 
 			<div class=" d-flex mb-3 align-items-center">
 				{% if not userEvent.picture %}
-					<img class="col-2 p-1 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/>
+					<a href="/profil/{{userEvent._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/></a>
 				{% else %}
-					<img class="col-2 p-1 rounded-circle" src="/images/userImages/{{userEvent.id}}/{{userEvent.picture}}" alt="image de profil" class="card-img-top"/>
+					<a href="/profil/{{userEvent._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{userEvent.id}}/{{userEvent.picture}}" alt="image de profil" class="card-img-top"/></a>
 				{% endif %}
 				<div>
 					<p class="card-title h5">{{userEvent.pseudo}}</p>
-
 					<p class="card-subtitle mb-2 text-muted">{{userEvent.motoUser[0].brand}}
 						{{userEvent.motoUser[0].model}}
 						{{userEvent.motoUser[0].cylinder}}</p>

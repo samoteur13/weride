@@ -10,10 +10,10 @@
 		{# section profil #}
 		<section class="card col-12 col-md-6 col-lg-6 mt-3 container p-0 d-flex align-items-center">
 			{% if not inspectedUser.picture %}
-				<img class="col-2 p-1 rounded-circle" src="/pictures/default.webp" alt="image profil par défault" class="card-img-top"/>
-			{% else %}
-				<img class="col-2 p-1 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil utilisateur" class="card-img-top"/>
-			{% endif %}
+					<a href="/profil/{{inspectedUser._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/></a>
+				{% else %}
+					<a href="/profil/{{inspectedUser._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil" class="card-img-top"/></a>
+				{% endif %}
 			<p class="card-title h5">{{inspectedUser.pseudo}}</p>
 			<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}}
 				{{user.motoUser[0].model}}
@@ -57,7 +57,7 @@
 				<article class="row card-body d-flex justify-content-end border border-muted rounded m-2">
 					<div class="col-6 d-flex flex-column justify-content-between">
 						<div class=" d-flex  align-items-center">
-							<img class="col-2 p-1 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil utilisateur" class="card-img-top"/>
+							<a href="/profil/{{inspectedUser._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil" class="card-img-top"/></a>
 							<div>
 								<h6 class="card-title">{{inspectedUser.pseudo}}</h6>
 								<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}}
@@ -97,7 +97,7 @@
 					<article class="row card-body d-flex justify-content-end border border-muted rounded m-2">
 						<div class="col-6 d-flex flex-column justify-content-between">
 							<div class=" d-flex  align-items-center">
-								<img class="col-2 p-1 rounded-circle" src="./images/userImages/{{authorEvent.authorEventInfo.id}}/{{authorEvent.authorEventInfo.picture}}" alt="image de profil qui organise une sortie" class="card-img-top"/>
+								<a href="/profil/{{authorEvent.authorEventInfo.id}}" class="col-2 p-1"><img class="col-2 p-1 rounded-circle" src="/images/userImages/{{authorEvent.authorEventInfo.id}}/{{authorEvent.authorEventInfo.picture}}" alt="image de profil qui organise une sortie" class="card-img-top"/></a>
 								<div>
 									<h6 class="card-title">{{authorEvent.authorEventInfo.pseudo}}</h5>
 									<p class="card-subtitle mb-2 text-muted">{{authorEvent.authorEventInfo.motoUser[0].brand}} {{authorEvent.authorEventInfo.motoUser[0].model}} {{authorEvent.authorEventInfo.motoUser[0].cylinder}}</p>
