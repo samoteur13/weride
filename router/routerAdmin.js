@@ -24,11 +24,12 @@ adminRouter.get('/listeUtilisateurs', ifConnected, ifIsAdmin, async (req, res) =
 //-----------------------------profil des autres utilisateurs
 adminRouter.get('/profil/:id', ifConnected, async (req, res) => {
     let inspectedUser = await User.findOne({_id: req.params.id})
+    const authorsEvent = await UserController.eventJoined(inspectedUser)
     res.render('./template/user/profil.html.twig', {
         inspectedUser: inspectedUser,
+        authorsEvent: authorsEvent,
         user: req.session.user
     })
-
 })
 
 //-----------------------------Supprimer un utilisateur
