@@ -115,7 +115,7 @@ export class UserController {
     static async eventJoined(user) {
         const listUsers = await User.find({ _id: { $ne: user._id } }) //permet de retiré un élément $ne === ! 
 
-        let users = []
+        let authorsEvent = []
 
         for (let i = 0; i < listUsers.length; i++) {
 
@@ -137,17 +137,17 @@ export class UserController {
 
             }
             listUsers[i].id = listUsers[i]._id.toString() //créer une nouvelle clef puis la parse
-            users.push(userEvent)
-            for (let i = 0; i < users.length; i++) {
+            authorsEvent.push(userEvent)
+            for (let i = 0; i < authorsEvent.length; i++) {
 
-                if (users[i].eventUser.length === 0) {
-                    users.splice(i, 1)
+                if (authorsEvent[i].eventUser.length === 0) {
+                    authorsEvent.splice(i, 1)
                 }
             }
         }
 
 
-        return users
+        return authorsEvent
 
     }
 

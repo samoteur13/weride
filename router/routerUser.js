@@ -68,10 +68,10 @@ userRouter.get('/deconnexion', (req, res) => {
 
 //-------------------------------------profil
 userRouter.get('/profil', ifConnected, async (req, res) => {
-    const eventJoined = await UserController.eventJoined(req.session.user)
+    const authorsEvent = await UserController.eventJoined(req.session.user)
     res.render('./template/user/profil.html.twig', {
         user: req.session.user,
-        eventJoined: eventJoined,
+        authorsEvent: authorsEvent,
         route: 'profil'
     })
 

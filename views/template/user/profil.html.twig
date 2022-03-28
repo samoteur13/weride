@@ -92,7 +92,7 @@
 			{% if inspectedUser.eventUser.length == 0 %}
 				<p class="mx-auto my-2 text-danger">Hey l'ami, tu ne participes à aucune sortie !</p>
 			{% endif %}
-			{% for object in eventJoined %}
+			{% for object in authorsEvent %}
 				{% for event in object.eventUser %}
 					<article class="row card-body d-flex justify-content-end border border-muted rounded m-2">
 						<div class="col-6 d-flex flex-column justify-content-between">
