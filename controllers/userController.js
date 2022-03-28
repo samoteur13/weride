@@ -12,18 +12,20 @@ const FileUrl = path.join(__dirname, '..', 'assets/images/')//Je créé le chemi
 export class UserController {
 
     static async subscribe(req) {
-        let user = req.body
+
+        let user = req.body //stock le req.body dans une variable
         let objectError = {
           "error": true
         }
 
         user.password = await cryptPassword(user.password) // le mot de passe devient crypté
-        user.status = 1
+        user.status = 1 
 
-        const newUser = new User(user)
+        const newUser = new User(user) //créer un nouvelle objet sur le schema mongoose (modelUser)
         const directory = `${FileUrl}/userImages/${newUser._id}` // chemin qui correspond au dossier de l'image du rider
+
         //---------------------------- permet de récupérer les erreurs
-        let err = await newUser.validateSync()
+        let err = await newUser.validateSync() // vérifie s'il y a des erreurs dans le schema mongoose 
         if (err) {
             for (let i = 0; i < Object.values(err.errors).length; i++) {
                 let path = Object.values(err.errors)[i].path //nom du champs en erreur
@@ -73,16 +75,17 @@ export class UserController {
     }
 
     static async updateUser(user, req) {
-        let modify = req.body
+        let modified = req.body
         let objectError = {
             errors: []
         }
         let err = ""
 
-        let userFind = await User.findOne({ _id: user }) // {permet de récupérer seulement la valeur 'password' de l'objet user}
-        let password = userFind.password;
-        let samePassword = await comparePassword(modify.oldPassword, password)
-        modify.password = await cryptPassword(modify.password) // le mot de passe devient crypté
+        let userFind = await User.findOne({ _id: user }) 
+        let password = userFind.password // {permet de récupérer seulement la valeur 'password' de l'objet user}
+        let samePassword = await comparePassword(modified.oldPassword, password)
+        modified.password = await cryptPassword(modified.password) // le mot de passe devient crypté
+
         if (samePassword) {
 
         } else {
@@ -90,6 +93,7 @@ export class UserController {
             objectError.errors.push(err)
             return objectError;
         }
+
         if (req.files) {// si un fichier se trouve dans le corps de la requette
             const directory = `${FileUrl}/userImages/${req.session.user._id}`// je defini le repertoire 
 
@@ -97,12 +101,13 @@ export class UserController {
                 await pictureManager.removePictureWthoutMimeType(directory, req.session.user._id)// j'efface l'image precedente
             }
             let ext = await pictureManager.addPicture(req.files.image, directory, req.session.user._id)// et j'ajoute la nouvelle
-            modify.picture = ext
+            modified.picture = ext
 
 
 
         }
-        await User.updateOne({ _id: user }, modify)
+        
+        await User.updateOne({ _id: user }, modified)
         return user
 
     }
