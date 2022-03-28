@@ -6,7 +6,7 @@ html{
     background-color:#3ECF67;
 }
 
-main {
+body {
     background: url('./pictures/bg.webp') !important;
     background-size: cover !important;
     position: top !important;
