@@ -1,40 +1,40 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
 	<main style="background: url('./pictures/bg.png');background-size: cover; background-repeat: no-repeat;">
-		<h1 class="text-center my-5">Bienvenue dans le monde des motards!</h1>
+		<h1 class="text-center text-light my-5" style="text-shadow: 1px 1px black">Bienvenue dans le monde des motards!</h1>
 			<form class="col-md-6 mx-auto p-3 my-5 bg-light rounded" enctype="multipart/form-data" method="post" action="inscription">
 				<h1 class="text-primary">Inscription</h1>
 			<hr class="m-0">
 				
 				<div>
-					<label class="my-3" for="name">Nom</label>
+					<label class="my-2" for="name">Nom</label>
 					<input type="text" class="form-control" id="name" name="name" placeholder="Entrer votre prénom" value="{{user.name}}">
 						<p class="text-danger">{{errors.name}}</p>
 				</div>
 				<div>
-					<label class="my-3" for="firstName">Prénom</label>
+					<label class="my-2" for="firstName">Prénom</label>
 					<input type="text" class="form-control" id="firstName" name="firstName" placeholder="Entrer votre nom" value="{{user.firstName}}">
 					<p class="text-danger">{{errors.firstName}}</p>
 				</div>
 				<div>
-					<label class="my-3" for="firstName">Pseudo</label>
+					<label class="my-2" for="firstName">Pseudo</label>
 					<input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" value="{{user.pseudo}}">
 					<p class="text-danger">{{errors.pseudo}}</p>
 				</div>
 				<div>
-					<label class="my-3" for="image">Photo</label>
+					<label class="my-2" for="image">Photo</label>
 					<input type="file" class="form-control" id="image" name="image">
 				</div>
 				<div>
-					<label class="my-3" for="firstName">Email</label>
+					<label class="my-2" for="firstName">Email</label>
 					<input type="email" class="form-control" id="mail" name="mail" placeholder="Entrer votre email" value="{{user.mail}}">
 					<p class="text-danger">{{errors.mail}}</p>
 				</div>
 				<div>
-					<label class="my-3" for="firstName">Mot de passe</label>
+					<label class="my-2" for="firstName">Mot de passe</label>
 					<input type="password" class="form-control" id="password" name="password" placeholder="Entrer votre mot de passe" value="{{user.password}}">
 				</div>
-				<button type="submit" class="my-3 btn btn-primary">Inscription</button>
+				<button type="submit" class="my-2 btn btn-primary">Inscription</button>
 			</form>
 		
 	</main>

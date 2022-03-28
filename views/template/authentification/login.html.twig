@@ -1,7 +1,7 @@
 {% extends "../../main.html.twig" %}
 {% block main %}
 	<main style="background: url('./pictures/bg.png');background-size: cover; background-repeat: no-repeat;">
-		<h1 class="text-center my-5">Hey, ravis de te revoir!</h1>
+		<h1 class="text-center text-light my-5" style="text-shadow: 1px 1px black">Hey, ravis de te revoir!</h1>
 		<!--_id === -->
 		<form class="col-12 col-md-6 col-lg-6 p-3 mx-auto my-5 bg-light rounded" method="post" action="connexion">
 			<h1 class="text-primary">Connexion</h1>
@@ -10,14 +10,14 @@
 				<p class="text-danger my-1">{{err}}</p>
 			{% endfor %}
 			<div>
-				<label class="my-3" for="pseudo">Pseudo</label>
+				<label class="my-2" for="pseudo">Pseudo</label>
 				<input type="text" class="form-control" id="pseudo" name="pseudo" placeholder="Entrer votre pseudo" value="{{user.pseudo}}">
 			</div>
 			<div>
-				<label class="my-3" for="password">Mot de passe</label>
+				<label class="my-2" for="password">Mot de passe</label>
 				<input type="password" class="form-control" id="password" name="password" placeholder="mot de passe" value="{{user.password}}">
 			</div>
-			<button type="submit" class="my-3 btn btn-primary">Connexion</button>
+			<button type="submit" class="my-2 btn btn-primary">Connexion</button>
 		</form>
 
 	</main>
