@@ -15,11 +15,11 @@ export class UserController {
 
         let user = req.body //stock le req.body dans une variable
         let objectError = {
-          "error": true
+            "error": true
         }
 
         user.password = await cryptPassword(user.password) // le mot de passe devient crypté
-        user.status = 1 
+        user.status = 1
 
         const newUser = new User(user) //créer un nouvelle objet sur le schema mongoose (modelUser)
         const directory = `${FileUrl}/userImages/${newUser._id}` // chemin qui correspond au dossier de l'image du rider
@@ -36,6 +36,14 @@ export class UserController {
 
 
         if (req.files) {
+            let extArray = req.files.image.mimetype.split("/"); //scinde le nom de limage en 2
+            let extension = extArray[extArray.length - 1];  //choppe l'extention de l'image
+            const allowedExtension = ['png', 'jpg', 'jpeg', 'webp']; // accepte que ces extentions
+
+            if (!allowedExtension.includes(extension)) { // si c'est different des extention dans 'allowedExtention'
+               objectError['picture'] = "Veuillez insérer une image" // creer ce message d'erreur
+               return objectError // retourne le tableau d'erreur
+            }
             let image = await pictureManager.addPicture(req.files.image, directory, newUser._id); //j'ajoute une image dans le dossier specifié
             newUser.picture = image
         }
@@ -81,7 +89,7 @@ export class UserController {
         }
         let err = ""
 
-        let userFind = await User.findOne({ _id: user }) 
+        let userFind = await User.findOne({ _id: user })
         let password = userFind.password // {permet de récupérer seulement la valeur 'password' de l'objet user}
         let samePassword = await comparePassword(modified.oldPassword, password)
         modified.password = await cryptPassword(modified.password) // le mot de passe devient crypté
@@ -106,7 +114,7 @@ export class UserController {
 
 
         }
-        
+
         await User.updateOne({ _id: user }, modified)
         return user
 
