@@ -103,6 +103,13 @@ export class UserController {
         }
 
         if (req.files) {// si un fichier se trouve dans le corps de la requette
+            let extArray = req.files.image.mimetype.split("/"); //scinde le nom de limage en 2
+            let extension = extArray[extArray.length - 1];  //choppe l'extention de l'image
+            const allowedExtension = ['png', 'jpg', 'jpeg', 'webp']; // accepte que ces extentions
+            if (!allowedExtension.includes(extension)) { // si c'est different des extention dans 'allowedExtention'
+               objectError.errors.push("Veuillez insérer une image") // creer ce message d'erreur
+               return objectError // retourne le tableau d'erreur
+            }
             const directory = `${FileUrl}/userImages/${req.session.user._id}`// je defini le repertoire 
 
             if (userFind.picture) {
