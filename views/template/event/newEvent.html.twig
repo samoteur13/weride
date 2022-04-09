@@ -1,4 +1,11 @@
 {% extends "../../main.html.twig" %}
+{% block stylesheets %}
+	<link href="/main.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+{% endblock %}
 {% block main %}
 	<main>
 		<div class="container">
@@ -6,7 +13,7 @@
 				<form class="col-md-6 mx-auto p-3 my-5 bg-light rounded" method="post" action="nouvelleEvenement">
 					<h2 class="text-primary">Organises une sortie</h2>
 					<hr class="m-0">
-				
+
 					<div class="mt-2">
 						<label for="startDate">Date de départ</label>
 						<input type="date" class="form-control" id="startDate" name="startDate" value="{{event.startDate}}">
@@ -14,13 +21,18 @@
 					</div>
 					<div class="mt-2">
 						<label for="hour">Heure de départ</label>
-						<input type="time" class="form-control" id="hour" name="hour"  value="{{event.hour}}">
+						<input type="time" class="form-control" id="hour" name="hour" value="{{event.hour}}">
 						<p class="text-danger">{{errors.hour}}</p>
 					</div>
 					<div class="mt-2">
 						<label for="endDate">Date de retour</label>
-						<input type="date" class="form-control" id="endDate" name="endDate"  value="{{event.endDate}}">
+						<input type="date" class="form-control" id="endDate" name="endDate" value="{{event.endDate}}">
 						<p class="text-danger">{{errors.endDate}}</p>
+					</div>
+					<div class="mt-2">
+						<h3>Mes étapes de de sortie</h3>
+						<article id="myCard" style="height:500px;"></article>
+							
 					</div>
 					<div class="mt-2">
 						<label for="departureLocation">Lieu de départ</label>
@@ -29,7 +41,7 @@
 					</div>
 					<div class="mt-2">
 						<label for="backLocation">Lieu de retour</label>
-						<input type="email" class="form-control" id="backLocation" name="backLocation" placeholder="Votre retour" value="{{event.backLocation}}">
+						<input type="text" class="form-control" id="backLocation" name="backLocation" placeholder="Votre retour" value="{{event.backLocation}}">
 						<p class="text-danger">{{errors.backLocation}}</p>
 					</div>
 					<div class="mt-2">
@@ -40,30 +52,41 @@
 					<div class="row mt-2 mb-2 d-flex justify-content-between">
 						<div class="col-4 text-center">
 							<input type="radio" id="pepere" name="type" value="pepere">
-							<label for="pepere"> Pépère</label>
+							<label for="pepere">
+								Pépère</label>
 						</div>
 						<div class="col-4 text-center">
 							<input type="radio" id="normal" name="type" value="normal" checked>
-							<label for="normal"> Normal</label>
+							<label for="normal">
+								Normal</label>
 						</div>
 						<div class="col-4 text-center">
 							<input type="radio" id="gaz" name="type" value="gaz">
-							<label for="gaz"> GazZ</label>
+							<label for="gaz">
+								GazZ</label>
 						</div>
 					</div>
 					<div class="mt-2">
 						<label for="title">Titre</label>
 						<input type="text" class="form-control" id="title" name="title" placeholder="Votre titre" value="{{event.title}}">
-							<p class="text-danger">{{errors.title}}</p>
+						<p class="text-danger">{{errors.title}}</p>
 					</div>
 					<div class="mt-2">
 						<label for="description">Description</label>
 						<textarea type="textera" rows="5" cols="8" class="form-control" id="description" name="description" placeholder="Votre description" value="{{event.description}}"></textarea>
-							<p class="text-danger">{{errors.description}}</p>
+						<p class="text-danger">{{errors.description}}</p>
 					</div>
-					<button type="submit" class="btn btn-primary mt-2">Valider</button>
+					<button type="submit" onclick="mySteps()" class="btn btn-primary mt-2">Valider</button>
 				</form>
 			</div>
 		</div>
 	</main>
+
+	<!-- Fichier JS -->
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+	<!-- Ces deux balises script sont à insérer entre les deux balises existantes -->
+	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+	<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+	<script src="/js/openStreetMap/newEvent.js"></script>
 {% endblock %}

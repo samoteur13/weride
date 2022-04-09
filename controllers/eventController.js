@@ -1,9 +1,10 @@
 import Event from "../models/modelEvent.js"
 import User from "../models/modelUser.js"
+import fetch from 'node-fetch'
 
 export class EventController {
 
-    static async newEvent(event, user) {
+    static async newEvent(event, user, mySteps) {
 
         let objectError = {
             "error": true
@@ -20,6 +21,7 @@ export class EventController {
             }
             return objectError;
         } else {
+            newEvent.mySteps = mySteps
             await user.eventUser.push(newEvent)
             await user.save()
             return newEvent
@@ -136,6 +138,38 @@ export class EventController {
         await User.updateOne({ _id: userEvent._id }, { eventUser: userEvent.eventUser })
         await userEvent.save() // pourquoi ceci ne suffit pas
 
+    }
+
+    static async mySteps(eventDetails) {
+
+        let site = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q="
+
+        let mySteps = []
+
+        async function coordinate(coordinate) {
+
+            let stepDetails = {
+                stepCity: String,
+                adressComplement: String,
+                stepLat: Number,
+                stepLon: Number
+            }
+
+            const data = await (await fetch(coordinate)).json()
+            stepDetails.stepCity = data[0].display_name.split(',')[0]
+            stepDetails.adressComplement = data[0].display_name
+            stepDetails.stepLat = data[0].lat
+            stepDetails.stepLon = data[0].lon
+
+            return stepDetails
+
+        }
+
+        for (let i = 0; i < eventDetails.steps.length; i++) {
+            mySteps.push(await coordinate(site + encodeURI(eventDetails.steps[i])))
+        }
+
+        return mySteps
     }
 
 }

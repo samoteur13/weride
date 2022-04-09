@@ -26,7 +26,12 @@ eventRouter.get('/nouvelleEvenement', ifConnected, async (req, res) => {
 })
 
 eventRouter.post('/nouvelleEvenement', ifConnected, async (req, res) => {
-    const newEvent = await EventController.newEvent(req.body, req.session.user)
+
+    //récupérera les informations de la base de données et les retournera sous forme de tables.
+    const mySteps = await  EventController.mySteps(req.body)
+    
+    const newEvent = await EventController.newEvent(req.body, req.session.user, mySteps)
+
     if (newEvent.error) {
         res.render('./template/event/newEvent.html.twig', {
             errors: newEvent,

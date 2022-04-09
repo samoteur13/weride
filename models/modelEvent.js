@@ -38,7 +38,8 @@ const eventShema = mongoose.Schema({
         type: String,
         required: [true, "Veuillez saisir une description"]
     },
-    riderJoin:  Array
+    riderJoin:  Array,
+    mySteps: Array,
 
 })
 
