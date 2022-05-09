@@ -18,18 +18,6 @@ const eventShema = mongoose.Schema({
         type: String,
         required: [true, "Veuillez saisir une date de retour"]
     },
-    departureLocation: {
-        type: String,
-        required: [true, "Veuillez saisir un lieu de départ"]
-    },
-    backLocation: {
-        type: String,
-        required: [true, "Veuillez saisir un lieu de retour"]
-    },
-    step: {
-        type: String,
-        required: [true, "Veuillez saisir au moins une étape"]
-    },
     type: {
         type: String,
         required: [true, "Veuillez choisir le type de balade"]

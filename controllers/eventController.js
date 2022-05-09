@@ -145,6 +145,7 @@ export class EventController {
         let site = "https://nominatim.openstreetmap.org/search?format=json&limit=3&q="
 
         let mySteps = []
+        let badAddress = false
 
         async function coordinate(coordinate) {
 
@@ -155,21 +156,34 @@ export class EventController {
                 stepLon: Number
             }
 
-            const data = await (await fetch(coordinate)).json()
-            stepDetails.stepCity = data[0].display_name.split(',')[0]
-            stepDetails.adressComplement = data[0].display_name
-            stepDetails.stepLat = data[0].lat
-            stepDetails.stepLon = data[0].lon
+            const data = (await fetch(coordinate))
+            const dataJson = await data.json()
+            if (dataJson.length === 0) {
+                return "false"
+            }
+            stepDetails.stepCity = dataJson[0].display_name.split(',')[0]
+            stepDetails.adressComplement = dataJson[0].display_name
+            stepDetails.stepLat = dataJson[0].lat
+            stepDetails.stepLon = dataJson[0].lon
+
 
             return stepDetails
 
         }
 
         for (let i = 0; i < eventDetails.steps.length; i++) {
+            if (await coordinate(site + encodeURI(eventDetails.steps[i])) === "false") {
+                badAddress = true
+            }
             mySteps.push(await coordinate(site + encodeURI(eventDetails.steps[i])))
         }
+        console.log(badAddress);
+        if (badAddress === true) {
+            return "false"
+        }else{
+            return mySteps
+        }
 
-        return mySteps
     }
 
 }
