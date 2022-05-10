@@ -94,8 +94,9 @@
 								<input type="hidden" class="stepsLon" value="{{pos.stepLon}}">
 							{% endfor %}
 						</div>
-						<div class="d-flex justify-content-end">
-							<a href="/evenement/{{event._id}}/{{inspectedUser._id}}" class="btn btn-light text-primary col-4">Détails</a>
+						<div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center  mt-1">
+						<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger ">Supprimer</a>
+							<a href="/evenement/{{event._id}}/{{inspectedUser._id}}" class="btn btn-light text-primary ">Détails</a>
 						</div>
 					</div>
 				</article>
@@ -147,7 +148,7 @@
 								{% endif %}
 							{% endfor %}
 
-							<div class="d-flex justify-content-between align-items-center">
+							<div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center  mt-1">
 								{% if event.riderJoin.length == 0 %}
 									<a href="/rejoindreEvenement/{{event._id}}/{{authorEvent.authorEventInfo.id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
 								{% elseif iParticipate %}
@@ -155,7 +156,7 @@
 								{% else %}
 									<a href="/rejoindreEvenement/{{event._id}}/{{authorEvent.authorEventInfo.id}}/{{user._id}}" class="btn btn-primary">Je participe</a>
 								{% endif %}
-								<a href="/evenement/{{event.id}}/{{authorEvent.authorEventInfo.id}}" class="btn btn-light text-primary col-4">Détails</a>
+								<a href="/evenement/{{event.id}}/{{authorEvent.authorEventInfo.id}}" class="btn btn-light text-primary ">Détails</a>
 							</div>
 						</div>
 					</article>

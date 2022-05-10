@@ -51,8 +51,7 @@
 									<input type="hidden" class="stepsLon" value="{{stepDetail.stepLon}}">
 								{% endfor %}
 							</div>
-							<div
-								class="d-flex justify-content-between">
+							<div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center">
 								{# Verifie si l'utilisateur participe à la sortie ou non #}
 								{% set iParticipate = false %}
 								{% for idRider in event.riderJoin %}
