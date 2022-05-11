@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { UserController } from '../controllers/userController.js';
+import { EventController } from '../controllers/eventController.js';
 import ifConnected from '../customDependences/ifConnected.js';
 import User from '../models/modelUser.js';
 import Moto from '../models/modelMoto.js';

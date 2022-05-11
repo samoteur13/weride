@@ -94,7 +94,6 @@ eventRouter.get('/evenement/:eventId/:userId', ifConnected, async (req, res) => 
 
 //-------------------------------------deleteEvent
 eventRouter.get('/supprimerEvenement/:eventId/:userEventId', ifConnected, async (req, res) => {
-
     const deleteUser = await EventController.deleteEvent(req.params.userEventId, req.params.eventId)
     res.redirect('/profil')
 })
