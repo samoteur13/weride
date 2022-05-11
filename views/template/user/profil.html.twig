@@ -17,14 +17,13 @@
 		{% set inspectedUser = user %}
 	{% endif %}
 
-	<main
-		class="">
+	<main class="">
 		{# section profil #}
-		<section class="card col-12 col-md-6 col-lg-6 mt-3 container p-0 d-flex align-items-center">
+		<section class="card col-12 col-md-6 col-lg-6 mt-3 container p-0 d-flex align-items-center {% if user.status == 1 %} d-none  {% endif %}">
 			{% if not inspectedUser.picture %}
-				<a href="/profil/{{inspectedUser._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/></a>
+				<a href="/profil/{{inspectedUser._id}}" class="col-6 p-1"><img class="col-12 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/></a>
 			{% else %}
-				<a href="/profil/{{inspectedUser._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil" class="card-img-top"/></a>
+				<a href="/profil/{{inspectedUser._id}}" class="col-6 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil" class="card-img-top"/></a>
 			{% endif %}
 			<p class="card-title h5">{{inspectedUser.pseudo}}</p>
 			<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}}
@@ -68,8 +67,8 @@
 			{% for event in inspectedUser.eventUser %}
 				<article class="row card-body d-flex justify-content-end border border-muted rounded m-2">
 					<div class="col-6 d-flex flex-column justify-content-between">
-						<div class=" d-flex  align-items-center">
-							<a href="/profil/{{inspectedUser._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil" class="card-img-top"/></a>
+						<div class=" d-flex flex-column  ">
+							<a href="/profil/{{inspectedUser._id}}" class="col-10 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{inspectedUser.id}}/{{inspectedUser.picture}}" alt="image de profil" class="card-img-top"/></a>
 							<div>
 								<h6 class="card-title">{{inspectedUser.pseudo}}</h6>
 								<p class="card-subtitle mb-2 text-muted">{{user.motoUser[0].brand}}
@@ -95,7 +94,7 @@
 							{% endfor %}
 						</div>
 						<div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center  mt-1">
-							<a href="/supprimerEvenement/{{event._id}}/{{userEvent._id}}" class="btn btn-danger ">Supprimer</a>
+							<a href="/supprimerEvenement/{{event._id}}/{{inspectedUser._id}}" class="btn btn-danger ">Supprimer</a>
 							<a href="/evenement/{{event._id}}/{{inspectedUser._id}}" class="btn btn-light text-primary ">Détails</a>
 						</div>
 					</div>
@@ -107,15 +106,15 @@
 		<section class="card col-12 col-md-6 col-lg-6 mt-3 bg-light container p-0" id="{{event._id}}">
 			<h2 class="card-title m-0 p-1">Je participe</h2>
 			<hr class="m-0">
-			{% if inspectedUser.eventUser.length == 0 %}
+			{# {% if inspectedUser.eventUser.length == 0 %}
 				<p class="mx-auto my-2 text-danger">Hey l'ami, tu ne participes à aucune sortie !</p>
-			{% endif %}
+			{% endif %} a corriger #}
 			{% for authorEvent in authorsEvent %}
 				{% for event in authorEvent.userEvent %}
 					<article class="row card-body d-flex justify-content-end border border-muted rounded m-2">
 						<div class="col-6 d-flex flex-column justify-content-between">
-							<div class=" d-flex  align-items-center">
-								<a href="/profil/{{authorEvent.authorEventInfo.id}}" class="col-2 p-1"><img class="col-2 p-1 rounded-circle" src="/images/userImages/{{authorEvent.authorEventInfo.id}}/{{authorEvent.authorEventInfo.picture}}" alt="image de profil qui organise une sortie" class="card-img-top"/></a>
+							<div class=" d-flex  flex-column ">
+								<a href="/profil/{{authorEvent.authorEventInfo.id}}" class="col-10 p-1"><img class="col-12 p-1 rounded-circle" src="/images/userImages/{{authorEvent.authorEventInfo.id}}/{{authorEvent.authorEventInfo.picture}}" alt="image de profil qui organise une sortie" class="card-img-top"/></a>
 								<div>
 									<h6 class="card-title">{{authorEvent.authorEventInfo.pseudo}}</h5>
 									<p class="card-subtitle mb-2 text-muted">{{authorEvent.authorEventInfo.motoUser[0].brand}}

@@ -21,11 +21,11 @@
 				{% for event in userEvent.eventUser %}
 					<article class="row card-body border border-muted rounded m-2 p-2" id="{{event._id}}">
 						<div class="col-6 d-flex flex-column justify-content-between p-2">
-							<div class=" d-flex  align-items-center">
+							<div class=" d-flex  flex-column">
 								{% if not userEvent.picture %}
-									<a href="/profil/{{userEvent._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/></a>
+									<a href="/profil/{{userEvent._id}}" class="col-10 p-1"><img class="col-12 rounded-circle" src="../pictures/default.jpg" class="card-img-top"/></a>
 								{% else %}
-									<a href="/profil/{{userEvent._id}}" class="col-2 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{userEvent.id}}/{{userEvent.picture}}" alt="image de profil" class="card-img-top"/></a>
+									<a href="/profil/{{userEvent._id}}" class="col-10 p-1"><img class="col-12 rounded-circle" src="/images/userImages/{{userEvent.id}}/{{userEvent.picture}}" alt="image de profil" class="card-img-top"/></a>
 								{% endif %}
 								<div>
 									<h6 class="card-title">{{userEvent.pseudo}}</h6>

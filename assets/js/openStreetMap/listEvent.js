@@ -42,8 +42,10 @@ for (let i = 0; i < myCards.length; i++) {
         L.Routing.control({
 
             waypoints: myWaypoints,
+            draggableWaypoints : false,// empeche de bouger le marker une fois placer
             lineOptions: {
                 styles: [{
+                    addWaypoints : false,
                     color: 'red',
                     opacity: 1,
                     wheeight: 7
