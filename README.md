@@ -8,8 +8,7 @@
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Boostrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
-<img alt="leaflet"  src='./leaflet.png' width='20%' />
-
+![Boostrap](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=Leaflet&logoColor=white)
 </div>
 
 This project, named "WeRide," is a social network designed for bikers. It allows users to register, log in, propose outings with routes and schedules on an interactive map, and participate in organized rides. Additionally, an admin account is available for site management.
