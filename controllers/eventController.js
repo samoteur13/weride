@@ -147,29 +147,6 @@ export class EventController {
         let mySteps = []
         let badAddress = false
 
-        async function coordinate(coordinate) {
-
-            let stepDetails = {
-                stepCity: String,
-                adressComplement: String,
-                stepLat: Number,
-                stepLon: Number
-            }
-
-            const data = (await fetch(coordinate))
-            const dataJson = await data.json()
-            if (dataJson.length === 0) {
-                return "false"
-            }
-            stepDetails.stepCity = dataJson[0].display_name.split(',')[0]
-            stepDetails.adressComplement = dataJson[0].display_name
-            stepDetails.stepLat = dataJson[0].lat
-            stepDetails.stepLon = dataJson[0].lon
-
-
-            return stepDetails
-
-        }
 
         for (let i = 0; i < eventDetails.steps.length; i++) {
             if (await coordinate(site + encodeURI(eventDetails.steps[i])) === "false") {
@@ -188,3 +165,26 @@ export class EventController {
 
 }
 
+async function coordinate(coordinate) {
+
+    let stepDetails = {
+        stepCity: String,
+        adressComplement: String,
+        stepLat: Number,
+        stepLon: Number
+    }
+
+    const data = (await fetch(coordinate))
+    const dataJson = await data.json()
+    if (dataJson.length === 0) {
+        return "false"
+    }
+    stepDetails.stepCity = dataJson[0].display_name.split(',')[0]
+    stepDetails.adressComplement = dataJson[0].display_name
+    stepDetails.stepLat = dataJson[0].lat
+    stepDetails.stepLon = dataJson[0].lon
+
+
+    return stepDetails
+
+}
