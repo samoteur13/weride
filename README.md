@@ -13,7 +13,7 @@
 
 This project, named "WeRide," is a social network designed for bikers. It allows users to register, log in, propose outings with routes and schedules on an interactive map, and participate in organized rides. Additionally, an admin account is available for site management.
 
-This project was created in collaboration with my colleague [Ylies Azzouz](lien-vers-le-GitHub-de-votre-collegue), who made a valuable contribution to the development of WeRide.
+This project was created in collaboration with my colleague [Ylies Azzouz](https://github.com/yliesazouz), who made a valuable contribution to the development of WeRide.
 
 ![WeRide Screenshot](./captureWeride.png)
 
@@ -71,5 +71,5 @@ export class Config {
 
 ## Collaboration on the Project
 
-The "WeRide" project is the result of collaborative work, combining our skills and dedication to provide an exceptional experience for bikers. You can check out [my colleague's GitHub](lien-vers-le-GitHub-de-votre-collegue) to learn more about his contribution to the project.
+The "WeRide" project is the result of collaborative work, combining our skills and dedication to provide an exceptional experience for bikers. You can check out [my colleague's GitHub](https://github.com/yliesazouz) to learn more about his contribution to the project.
 
